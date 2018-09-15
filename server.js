@@ -8,6 +8,9 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
+// add uni routes
+require('./api/routes/UniRoutes')(app);
 app.listen(port);
+
 console.log('Uni-oth_mensa_api started on port: ' + port);
-console.log('Try http://localhost:' + port + '/');
+console.log('Try http://localhost:' + port + '/mensa/uni/mo');
