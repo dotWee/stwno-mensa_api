@@ -19,7 +19,7 @@ Public API paths:
 
 Possible location values:
 
-    uni, oth, oth-abend, pruefening
+    uni, oth, oth-evening, pruefening
 
 Possible day values:
 
