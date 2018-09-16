@@ -1,6 +1,6 @@
 {
   "name": "uni-oth_mensa_api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A json-wrapper around the inofficial API for different canteens of the university (and university of applied sciences) in Regensburg, germany.",
   "repository": {
     "type": "git",
@@ -8,7 +8,8 @@
   },
   "main": "lib/server.js",
   "scripts": {
-    "start": "nodemon lib/server.js",
+    "start": "node lib/server.js",
+    "nodemon": "nodemon lib/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Lukas Wolfsteiner <lukas@wolfsteiner.de>",
