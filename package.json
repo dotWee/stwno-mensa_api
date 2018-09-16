@@ -1,7 +1,7 @@
 {
   "name": "uni-oth_mensa_api",
   "version": "1.0.0",
-  "description": "",
+  "description": "A json-wrapper around the inofficial API for different canteens of the university (and university of applied sciences) in Regensburg, germany.",
   "repository": {
     "type": "git",
     "url": "https://github.com/dotWee/uni-oth_mensa_api.git"
