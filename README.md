@@ -19,11 +19,11 @@ Public API paths:
 
 Possible location values:
 
-    uni, oth, oth-abend, pruefening
+    uni, oth, oth-evening, pruefening
 
 Possible day values:
 
-    mo, di, mi, do, fr, sa, so
+    monday, tuesday, wednesday, thursday, friday, saturday, sunday
 
 ## Usage
 
@@ -63,13 +63,13 @@ Try http://localhost:3000/mensa/uni/mo
 
 ## Response
 
-Example response for path `/mensa/uni/mo`:
+Example response for path `/mensa/uni/monday`:
 
 ```json
 [{
     "name": "Feine Kräutersuppe",
     "date": "10.09.2018",
-    "day": "mo",
+    "day": "monday",
     "category": "Suppe",
     "labels": ["V"],
     "details": ["3", "A", "G", "I", "AA"],
@@ -81,7 +81,7 @@ Example response for path `/mensa/uni/mo`:
 }, {
     "name": "Hähnchenbrustfilet mit Pfefferrahm und Minirösti",
     "date": "10.09.2018",
-    "day": "mo",
+    "day": "monday",
     "category": "HG3",
     "labels": ["G"],
     "details": ["3", "A", "G", "AA"],
@@ -93,7 +93,7 @@ Example response for path `/mensa/uni/mo`:
 }, {
     "name": "Bio-Fusilli",
     "date": "10.09.2018",
-    "day": "mo",
+    "day": "monday",
     "category": "B1",
     "labels": ["B", "VG"],
     "details": ["A", "AA"],
