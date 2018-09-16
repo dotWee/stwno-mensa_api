@@ -1,6 +1,6 @@
 # Uni-oth_mensa_api
 
-This node application is a wrapper around the inofficial API for different canteens of the university (and university of applied sciences) in Regensburg, germany.  
+This node application is a json-wrapper around the inofficial API for different canteens of the university (and university of applied sciences) in Regensburg, germany.  
 
 The original API is kind of unhandy, as it serves its weekly data in the `csv` format. To improve the handling for more simple applications, this wrapper allows more routes and serves its data in the `json` format.
 
