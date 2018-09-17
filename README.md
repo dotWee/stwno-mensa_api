@@ -119,3 +119,9 @@ Get menu for the university canteen of this weeks monday:
 ## Credits
 
 This application is heavily inspired by @alexanderbazo's [URMensa-JSON-API](https://github.com/alexanderbazo/URMensa-JSON-API) project.
+
+## License
+
+Copyright (c) 2018 Lukas 'dotwee' Wolfsteiner
+
+Licensed under the [_Do What The Fuck You Want To_](/LICENSE) public license
