@@ -1,6 +1,6 @@
 {
   "name": "uni-oth_mensa_api",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "A json-wrapper around the inofficial API for different canteens of the university (and university of applied sciences) in Regensburg, germany.",
   "repository": {
     "type": "git",
@@ -15,10 +15,14 @@
   "author": "Lukas Wolfsteiner <lukas@wolfsteiner.de>",
   "license": "MIT",
   "devDependencies": {
+    "eslint": "^5.6.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
     "nodemon": "^1.18.4"
   },
   "dependencies": {
-    "csv": "^3.1.0",
+    "body-parser": "^1.18.3",
+    "csv-parse": "^3.0.0",
     "express": "^4.16.3",
     "iconv-lite": "^0.4.24"
   },

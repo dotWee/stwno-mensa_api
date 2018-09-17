@@ -11,26 +11,6 @@ The following canteens are supported:
 - University (Sammelgebäude)
 - Prüfening
 
-## Paths
-
-Public API paths:
-
-    /mensa/:location/:day
-
-Possible location values:
-
-    uni, oth, oth-abend, pruefening
-
-Possible day values:
-
-    mo, di, mi, do, fr, sa, so
-
-## Usage
-
-Get menu for the university canteen of this weeks monday:
-
-    /mensa/uni/mo
-
 ## Build
 
 Pull required dependencies:
@@ -61,15 +41,51 @@ Uni-oth_mensa_api started on port: 3000
 Try http://localhost:3000/mensa/uni/mo
 ```
 
-## Response
+## Usage
 
-Example response for path `/mensa/uni/mo`:
+### Whole menu for current week
+
+    /mensa/:location
+
+Possible location values:
+
+    uni
+    oth
+    oth-evening
+    pruefening
+
+### Menu for specific weekday
+
+    /mensa/:location/:day
+
+Possible location values:
+
+    uni
+    oth
+    oth-evening
+    pruefening
+
+Possible day values:
+
+    monday
+    tuesday
+    wednesday
+    thursday
+    friday
+    saturday
+    sunday
+
+#### Example
+
+Get menu for the university canteen of this weeks monday:
+
+    GET /mensa/uni/monday
 
 ```json
 [{
     "name": "Feine Kräutersuppe",
     "date": "10.09.2018",
-    "day": "mo",
+    "day": "monday",
     "category": "Suppe",
     "labels": ["V"],
     "details": ["3", "A", "G", "I", "AA"],
@@ -81,7 +97,7 @@ Example response for path `/mensa/uni/mo`:
 }, {
     "name": "Hähnchenbrustfilet mit Pfefferrahm und Minirösti",
     "date": "10.09.2018",
-    "day": "mo",
+    "day": "monday",
     "category": "HG3",
     "labels": ["G"],
     "details": ["3", "A", "G", "AA"],
@@ -93,7 +109,7 @@ Example response for path `/mensa/uni/mo`:
 }, {
     "name": "Bio-Fusilli",
     "date": "10.09.2018",
-    "day": "mo",
+    "day": "monday",
     "category": "B1",
     "labels": ["B", "VG"],
     "details": ["A", "AA"],
@@ -102,7 +118,7 @@ Example response for path `/mensa/uni/mo`:
         "employees": "1,00",
         "guests": "1,50"
     }
-}]
+}, ...]
 ```
 
 ## Credits
