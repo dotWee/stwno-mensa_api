@@ -18,6 +18,7 @@
     "eslint": "^5.6.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
+    "express-swagger-generator": "^1.1.9",
     "nodemon": "^1.18.4"
   },
   "dependencies": {
