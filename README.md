@@ -1,8 +1,14 @@
 # rgb-mensa_api
 
+[![npm @latest](https://img.shields.io/npm/v/rgb-mensa_api.svg)](https://www.npmjs.com/package/rgb-mensa_api)
+[![dependencies Status](https://david-dm.org/dotWee/rgb-mensa_api/status.svg)](https://david-dm.org/dotWee/rgb-mensa_api)
+[![devDependencies Status](https://david-dm.org/dotWee/rgb-mensa_api/dev-status.svg)](https://david-dm.org/dotWee/rgb-mensa_api?type=dev)
+[![GitHub issues](https://img.shields.io/github/issues/dotWee/rgb-mensa_api.svg)](https://github.com/dotWee/rgb-mensa_api/issues)
+[![GitHub license](https://img.shields.io/github/license/dotWee/rgb-mensa_api.svg)](https://github.com/dotWee/rgb-mensa_api)
+
 This node application is a json-wrapper around the inofficial API for different canteens of the university (and university of applied sciences) in Regensburg, germany.  
 
-The original API is kind of unhandy, as it serves its weekly data in the `csv` format. To improve the handling for more simple applications, this wrapper allows more routes and serves its data in the `json` format.
+The original API is kind of unhandy, as it serves its weekly data in the **csv** format. To improve the handling for more simple applications, this wrapper allows more routes and serves its data in the **json** format.
 
 The following canteens are supported:
 
