@@ -1,0 +1,167 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "description": "A json-wrapper around the inofficial API for different canteens of the university (and university of applied sciences) in Regensburg, germany.",
+      "version": "1.2.0",
+      "title": "Regensburg Mensa API",
+      "contact": {
+        "email": "lukas@wolfsteiner.de"
+      },
+      "license": {
+        "name": "WTFPL",
+        "url": "https://github.com/dotWee/rgb-mensa_api/blob/master/LICENSE"
+      }
+    },
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "Menu",
+        "description": "Menu of a specific canteen"
+      }
+    ],
+    "schemes": [
+      "https",
+      "http"
+    ],
+    "paths": {
+      "/mensa/{location}": {
+        "get": {
+          "tags": [
+            "Menu"
+          ],
+          "summary": "Get menu of a given canteen",
+          "description": "Returns a menu of givien canteen",
+          "operationId": "getMenuOfLocation",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "location",
+              "in": "path",
+              "description": "Name of a supported canteen",
+              "required": true,
+              "type": "string",
+              "enum": [
+                "uni",
+                "oth",
+                "oth-evening",
+                "pruefening"
+              ]
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "schema": {
+                "$ref": "#/definitions/Menu"
+              }
+            },
+            "400": {
+              "description": "Invalid location supplied"
+            }
+          }
+        }
+      },
+      "/mensa/{location}/{day}": {
+        "get": {
+          "tags": [
+            "Menu"
+          ],
+          "summary": "Get menu of a given canteen on specific weekday",
+          "description": "Returns menu of given canteen on specific weekday",
+          "operationId": "getMenuOfLocationForDay",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "location",
+              "in": "path",
+              "description": "Name of a supported canteen",
+              "required": true,
+              "type": "string",
+              "enum": [
+                "uni",
+                "oth",
+                "oth-evening",
+                "pruefening"
+              ]
+            },
+            {
+              "name": "day",
+              "in": "path",
+              "description": "Weekday",
+              "required": true,
+              "type": "string",
+              "enum": [
+                "monday",
+                "tuesday",
+                "wednesday",
+                "thursday",
+                "friday",
+                "saturday",
+                "sunday"
+              ]
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "schema": {
+                "$ref": "#/definitions/Menu"
+              }
+            },
+            "400": {
+              "description": "Invalid location supplied"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Item": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Hähnchenbrustfilet mit Pfefferrahm und Minirösti"
+          },
+          "date": {
+            "type": "string",
+            "example": "10.09.2018"
+          },
+          "day": {
+            "type": "string",
+            "example": "monday"
+          },
+          "category": {
+            "type": "string",
+            "example": "HG1"
+          },
+          "labels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "Menu": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/Item"
+        }
+      }
+    },
+    "externalDocs": {
+      "description": "Source code",
+      "url": "https://github.com/dotWee/rgb-mensa_api"
+    }
+  }
