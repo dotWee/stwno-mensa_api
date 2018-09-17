@@ -11,26 +11,6 @@ The following canteens are supported:
 - University (Sammelgebäude)
 - Prüfening
 
-## Paths
-
-Public API paths:
-
-    /mensa/:location/:day
-
-Possible location values:
-
-    uni, oth, oth-evening, pruefening
-
-Possible day values:
-
-    monday, tuesday, wednesday, thursday, friday, saturday, sunday
-
-## Usage
-
-Get menu for the university canteen of this weeks monday:
-
-    /mensa/uni/mo
-
 ## Build
 
 Pull required dependencies:
@@ -61,9 +41,45 @@ Uni-oth_mensa_api started on port: 3000
 Try http://localhost:3000/mensa/uni/mo
 ```
 
-## Response
+## Usage
 
-Example response for path `/mensa/uni/monday`:
+### Whole menu for current week
+
+    /mensa/:location
+
+Possible location values:
+
+    uni
+    oth
+    oth-evening
+    pruefening
+
+### Menu for specific weekday
+
+    /mensa/:location/:day
+
+Possible location values:
+
+    uni
+    oth
+    oth-evening
+    pruefening
+
+Possible day values:
+
+    monday
+    tuesday
+    wednesday
+    thursday
+    friday
+    saturday
+    sunday
+
+#### Example
+
+Get menu for the university canteen of this weeks monday:
+
+    GET /mensa/uni/monday
 
 ```json
 [{
@@ -102,7 +118,7 @@ Example response for path `/mensa/uni/monday`:
         "employees": "1,00",
         "guests": "1,50"
     }
-}]
+}, ...]
 ```
 
 ## Credits
