@@ -2,7 +2,7 @@
     "swagger": "2.0",
     "info": {
       "description": "A json-wrapper around the inofficial API for different canteens of the university (and university of applied sciences) in Regensburg, germany.",
-      "version": "1.2.0",
+      "version": "1.3.0",
       "title": "Regensburg Mensa API",
       "contact": {
         "email": "lukas@wolfsteiner.de"
