@@ -1,4 +1,4 @@
-# Uni-oth_mensa_api
+# rgb-mensa_api
 
 This node application is a json-wrapper around the inofficial API for different canteens of the university (and university of applied sciences) in Regensburg, germany.  
 
@@ -28,13 +28,8 @@ Example execution:
 ```bash
 $ npm run start
 
-> uni-oth_mensa_api@1.0.0 start /Users/lukas/Git/Untracked/Javascript/uni-oth_mensa_api
-> nodemon lib/server.js
-
-[nodemon] 1.18.4
-[nodemon] to restart at any time, enter `rs`
-[nodemon] watching: *.*
-[nodemon] starting `node lib/server.js`
+> rgb-mensa_api@1.1.0 start .
+> node lib/server.js
 
 Updating local cache
 Uni-oth_mensa_api started on port: 3000
