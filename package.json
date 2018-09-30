@@ -1,6 +1,6 @@
 {
   "name": "rgb-mensa_api",
-  "version": "1.3.2",
+  "version": "1.4.0",
   "description": "A json-wrapper around the inofficial API for different canteens of the university (and university of applied sciences) in Regensburg, germany.",
   "repository": {
     "type": "git",
