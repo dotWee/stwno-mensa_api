@@ -101,7 +101,8 @@
                 "thursday",
                 "friday",
                 "saturday",
-                "sunday"
+                "sunday",
+                "today"
               ]
             }
           ],

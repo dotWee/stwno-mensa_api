@@ -75,6 +75,7 @@ Possible day values:
     friday
     saturday
     sunday
+    today
 
 #### Example
 
