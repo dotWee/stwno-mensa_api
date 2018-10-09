@@ -24,6 +24,30 @@
       "http"
     ],
     "paths": {
+      "/mensa": {
+        "get": {
+          "tags": [
+            "Menu"
+          ],
+          "summary": "Get menu of all canteens combined",
+          "description": "Returns a menu",
+          "operationId": "getMenu",
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "schema": {
+                "$ref": "#/definitions/Menu"
+              }
+            },
+            "400": {
+              "description": "Invalid location supplied"
+            }
+          }
+        }
+      },
       "/mensa/{location}": {
         "get": {
           "tags": [
