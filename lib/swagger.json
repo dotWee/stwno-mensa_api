@@ -51,6 +51,36 @@
           }
         }
       },
+      "/ingredients/{key}": {
+        "get": {
+          "tags": [
+            "Ingredients"
+          ],
+          "summary": "Get ingredients matching the given key",
+          "description": "Returns ingredients matching the given key",
+          "operationId": "getIngredientsForKey",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "key",
+              "in": "path",
+              "description": "Key of an ingredient",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "schema": {
+                "$ref": "#/definitions/Ingredients"
+              }
+            }
+          }
+        }
+      },
       "/mensa/{location}": {
         "get": {
           "tags": [
