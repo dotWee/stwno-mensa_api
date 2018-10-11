@@ -34,54 +34,21 @@ Example execution:
 ```bash
 $ npm run start
 
-> rgb-mensa_api@1.1.0 start .
+> rgb-mensa_api@1.4.0 start .
 > node lib/server.js
 
 Updating local cache
-Uni-oth_mensa_api started on port: 3000
-Try http://localhost:3000/mensa/uni/mo
+Server started on port: 3000
+Try http://localhost:3000/mensa/uni/today
 ```
 
 ## Usage
 
-### Whole menu for current week
+Checkout the [API documentation](https://rgb-mensa-api.herokuapp.com/api-docs) for informations on how to use the API.
 
-    /mensa/:location
+For example, get the menu for the university canteen on this weeks monday:
 
-Possible location values:
-
-    uni
-    oth
-    oth-evening
-    pruefening
-
-### Menu for specific weekday
-
-    /mensa/:location/:day
-
-Possible location values:
-
-    uni
-    oth
-    oth-evening
-    pruefening
-
-Possible day values:
-
-    monday
-    tuesday
-    wednesday
-    thursday
-    friday
-    saturday
-    sunday
-    today
-
-#### Example
-
-Get menu for the university canteen of this weeks monday:
-
-    GET /mensa/uni/monday
+    GET rgb-mensa-api.herokuapp.com/mensa/uni/monday
 
 ```json
 [
