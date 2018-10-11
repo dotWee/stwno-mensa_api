@@ -34,7 +34,7 @@ Example execution:
 ```bash
 $ npm run start
 
-> rgb-mensa_api@1.4.0 start .
+> rgb-mensa_api@2.0.0 start .
 > node lib/server.js
 
 Updating local cache
@@ -46,9 +46,9 @@ Try http://localhost:3000/mensa/uni/today
 
 Checkout the [API documentation](https://rgb-mensa-api.herokuapp.com/api-docs) for informations on how to use the API.
 
-For example, get the menu for the university canteen on this weeks monday:
+For example, get todays menu for the university canteen:
 
-    GET rgb-mensa-api.herokuapp.com/mensa/uni/monday
+    GET rgb-mensa-api.herokuapp.com/mensa/uni/today
 
 ```json
 [
