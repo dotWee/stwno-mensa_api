@@ -146,7 +146,7 @@
               "type": "string"
             }
           },
-          "details": {
+          "ingredients": {
             "type": "array",
             "items": {
               "type": "string"
