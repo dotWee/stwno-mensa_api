@@ -17,6 +17,10 @@
       {
         "name": "Menu",
         "description": "Menu of a specific canteen"
+      },
+      {
+        "name": "Ingredients",
+        "description": "Possible ingredients for menu items"
       }
     ],
     "schemes": [
@@ -24,6 +28,62 @@
       "http"
     ],
     "paths": {
+      "/ingredients": {
+        "get": {
+          "tags": [
+            "Ingredients"
+          ],
+          "summary": "Get a list of possible ingredients",
+          "description": "Returns a list of possible ingredients",
+          "operationId": "getIngredients",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "schema": {
+                "$ref": "#/definitions/Ingredients"
+              }
+            }
+          }
+        }
+      },
+      "/ingredients/{key}": {
+        "get": {
+          "tags": [
+            "Ingredients"
+          ],
+          "summary": "Get ingredient matching the given key",
+          "description": "Returns ingredient matching the given key",
+          "operationId": "getIngredientsForKey",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "key",
+              "in": "path",
+              "description": "Key of an ingredient",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "schema": {
+                "$ref": "#/definitions/Ingredient"
+              }
+            },
+            "400": {
+              "description": "Invalid ingredient key supplied"
+            }
+          }
+        }
+      },
       "/mensa/{location}": {
         "get": {
           "tags": [
@@ -121,6 +181,25 @@
       }
     },
     "definitions": {
+      "Ingredient": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "example": "G"
+          },
+          "value": {
+            "type": "string",
+            "example": "Milch und Milchprodukte"
+          }
+        }
+      },
+      "Ingredients": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/Ingredient"
+        }
+      },
       "Item": {
         "type": "object",
         "properties": {
@@ -149,7 +228,7 @@
           "ingredients": {
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/definitions/Ingredient"
             }
           }
         }
