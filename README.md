@@ -84,43 +84,27 @@ Get menu for the university canteen of this weeks monday:
     GET /mensa/uni/monday
 
 ```json
-[{
-    "name": "Feine Kräutersuppe",
-    "date": "10.09.2018",
-    "day": "monday",
-    "category": "Suppe",
-    "labels": ["V"],
-    "details": ["3", "A", "G", "I", "AA"],
-    "price": {
-        "students": "0,70",
-        "employees": "0,90",
-        "guests": "1,40"
-    }
-}, {
-    "name": "Hähnchenbrustfilet mit Pfefferrahm und Minirösti",
-    "date": "10.09.2018",
-    "day": "monday",
-    "category": "HG3",
-    "labels": ["G"],
-    "details": ["3", "A", "G", "AA"],
-    "price": {
-        "students": "3,10",
-        "employees": "3,90",
-        "guests": "4,60"
-    }
-}, {
-    "name": "Bio-Fusilli",
-    "date": "10.09.2018",
-    "day": "monday",
-    "category": "B1",
-    "labels": ["B", "VG"],
-    "details": ["A", "AA"],
-    "price": {
-        "students": "0,80",
-        "employees": "1,00",
-        "guests": "1,50"
-    }
-}, ...]
+[
+    {
+        "name": "Broccolicremesuppe",
+        "day": "monday",
+        "category": "Suppe",
+        "labels": [
+            "V"
+        ],
+        "ingredients": [
+            {
+                "key": "3",
+                "value": "mit Antioxidationsmittel"
+            },
+        ],
+        "price":{
+            "students": "0,70",
+            "employees": "0,90",
+            "guests": "1,40"
+        }
+    }, ...
+]
 ```
 
 ## Credits
@@ -129,6 +113,6 @@ This application is heavily inspired by @alexanderbazo's [URMensa-JSON-API](http
 
 ## License
 
-Copyright (c) 2018 Lukas 'dotwee' Wolfsteiner
+Copyright (c) 2018 Lukas Wolfsteiner
 
 Licensed under the [_Do What The Fuck You Want To_](/LICENSE) public license

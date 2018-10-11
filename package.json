@@ -12,7 +12,7 @@
     "nodemon": "nodemon lib/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Lukas Wolfsteiner <lukas@wolfsteiner.de>",
+  "author": "Lukas Wolfsteiner <lukas@wolfsteiner.media>",
   "license": "WTFPL",
   "devDependencies": {
     "eslint": "^5.6.0",
