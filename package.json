@@ -1,6 +1,6 @@
 {
   "name": "rgb-mensa_api",
-  "version": "1.4.0",
+  "version": "2.0.0",
   "description": "A json-wrapper around the inofficial API for different canteens of the university (and university of applied sciences) in Regensburg, germany.",
   "repository": {
     "type": "git",
@@ -12,7 +12,7 @@
     "nodemon": "nodemon lib/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Lukas Wolfsteiner <lukas@wolfsteiner.de>",
+  "author": "Lukas Wolfsteiner <lukas@wolfsteiner.media>",
   "license": "WTFPL",
   "devDependencies": {
     "eslint": "^5.6.0",
