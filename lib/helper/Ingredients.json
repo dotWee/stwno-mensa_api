@@ -1,0 +1,147 @@
+[{
+    "key": "1",
+    "value": "mit Farbstoff"
+}, {
+    "key": "2",
+    "value": "mit Konservierungsstoff"
+}, {
+    "key": "3",
+    "value": "mit Antioxidationsmittel"
+}, {
+    "key": "4",
+    "value": "mit Geschmacksverstärker"
+}, {
+    "key": "5",
+    "value": "geschwefelt"
+}, {
+    "key": "6",
+    "value": "geschwärzt"
+}, {
+    "key": "7",
+    "value": "gewachst"
+}, {
+    "key": "8",
+    "value": "mit Phosphat"
+}, {
+    "key": "9",
+    "value": "mit Süßungsmittel Saccharin"
+}, {
+    "key": "10",
+    "value": "mit Süßungsmittel Acesulfam"
+}, {
+    "key": "11",
+    "value": "mit Süßungsmittel Cyclamat"
+}, {
+    "key": "12",
+    "value": "mit Süßungsmittel Acesulfam"
+}, {
+    "key": "13",
+    "value": "chininhaltig"
+}, {
+    "key": "14",
+    "value": "coffeinhaltig"
+}, {
+    "key": "15",
+    "value": "gentechnisch verändert"
+}, {
+    "key": "16",
+    "value": "enthält Sulfite"
+}, {
+    "key": "17",
+    "value": "enthält Phentylalanin"
+},
+{
+    "key": "A",
+    "value": "Gluten"
+}, {
+    "key": "AA",
+    "value": "Weizen"
+}, {
+    "key": "AB",
+    "value": "Roggen"
+}, {
+    "key": "AC",
+    "value": "Gerste"
+}, {
+    "key": "AD",
+    "value": "Hafer"
+}, {
+    "key": "AE",
+    "value": "Dinkel"
+}, {
+    "key": "AF",
+    "value": "Kamut"
+}, {
+    "key": "B",
+    "value": "Krebstiere"
+}, {
+    "key": "C",
+    "value": "Eier"
+}, {
+    "key": "D",
+    "value": "Fisch"
+}, {
+    "key": "E",
+    "value": "Erdnüsse"
+}, {
+    "key": "F",
+    "value": "Soja"
+}, {
+    "key": "G",
+    "value": "Milch und Milchprodukte"
+}, {
+    "key": "H",
+    "value": "Schalenfrüchte"
+}, {
+    "key": "HA",
+    "value": "Mandel"
+}, {
+    "key": "HB",
+    "value": "Haselnuss"
+}, {
+    "key": "HC",
+    "value": "Walnuss"
+}, {
+    "key": "HD",
+    "value": "Cashew"
+}, {
+    "key": "HE",
+    "value": "Pecannuss"
+}, {
+    "key": "HF",
+    "value": "Paranuss"
+}, {
+    "key": "HG",
+    "value": "Pistazie"
+}, {
+    "key": "HH",
+    "value": "Macadamianuss"
+}, {
+    "key": "HI",
+    "value": "Queenslandnuss"
+}, {
+    "key": "I",
+    "value": "Sellerie"
+}, {
+    "key": "J",
+    "value": "Senf"
+}, {
+    "key": "K",
+    "value": "Sesamsamen"
+}, {
+    "key": "L",
+    "value": "Schwfeldioxid und Sulfite"
+}, {
+    "key": "M",
+    "value": "Lupinen"
+}, {
+    "key": "N",
+    "value": "Weichtiere"
+}, {
+    "key": "O",
+    "value": "Nitrat"
+}, {
+    "key": "P",
+    "value": "Nitritpökelsalz"
+}
+]

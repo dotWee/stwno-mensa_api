@@ -121,6 +121,19 @@
       }
     },
     "definitions": {
+      "Ingredient": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "example": "G"
+          },
+          "value": {
+            "type": "string",
+            "example": "Milch und Milchprodukte"
+          }
+        }
+      },
       "Item": {
         "type": "object",
         "properties": {
@@ -149,7 +162,7 @@
           "ingredients": {
             "type": "array",
             "items": {
-              "type": "string"
+              "$ref": "#/definitions/Ingredient"
             }
           }
         }
