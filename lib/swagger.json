@@ -56,8 +56,8 @@
           "tags": [
             "Ingredients"
           ],
-          "summary": "Get ingredients matching the given key",
-          "description": "Returns ingredients matching the given key",
+          "summary": "Get ingredient matching the given key",
+          "description": "Returns ingredient matching the given key",
           "operationId": "getIngredientsForKey",
           "produces": [
             "application/json"
@@ -75,8 +75,11 @@
             "200": {
               "description": "Successful operation",
               "schema": {
-                "$ref": "#/definitions/Ingredients"
+                "$ref": "#/definitions/Ingredient"
               }
+            },
+            "400": {
+              "description": "Invalid ingredient key supplied"
             }
           }
         }
