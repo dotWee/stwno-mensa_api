@@ -17,6 +17,10 @@
       {
         "name": "Menu",
         "description": "Menu of a specific canteen"
+      },
+      {
+        "name": "Ingredients",
+        "description": "Possible ingredients for menu items"
       }
     ],
     "schemes": [
@@ -24,6 +28,29 @@
       "http"
     ],
     "paths": {
+      "/ingredients": {
+        "get": {
+          "tags": [
+            "Ingredients"
+          ],
+          "summary": "Get a list of possible ingredients",
+          "description": "Returns a list of possible ingredients",
+          "operationId": "getIngredients",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "schema": {
+                "$ref": "#/definitions/Ingredients"
+              }
+            }
+          }
+        }
+      },
       "/mensa/{location}": {
         "get": {
           "tags": [
@@ -132,6 +159,12 @@
             "type": "string",
             "example": "Milch und Milchprodukte"
           }
+        }
+      },
+      "Ingredients": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/Ingredient"
         }
       },
       "Item": {
