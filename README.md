@@ -34,7 +34,7 @@ Example execution:
 ```bash
 $ npm run start
 
-> rgb-mensa_api@2.0.0 start .
+> rgb-mensa_api@2.0.1 start .
 > node lib/server.js
 
 Updating local cache
