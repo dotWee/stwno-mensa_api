@@ -24,6 +24,8 @@
     "body-parser": "^1.18.3",
     "csv-parse": "^3.2.0",
     "express": "^4.16.4",
+    "express-graphql": "^0.7.1",
+    "graphql": "^14.0.2",
     "iconv-lite": "^0.4.24",
     "swagger-ui-express": "^4.0.1"
   },
