@@ -7,6 +7,7 @@ const ingredients = require("./data/Ingredients.json")
 var schema = buildSchema(`
   type Query {
     getIngredients: [Ingredient]
+    getIngredient(key: String!): Ingredient
   }
 
   type Ingredient {
@@ -18,6 +19,9 @@ var schema = buildSchema(`
 var root = {
   getIngredients: () => {
     return ingredients;
+  },
+  getIngredient: ({key}) => {
+    return ingredients.find(ingredient => ingredient.key === key)
   }
 };
 
@@ -28,4 +32,5 @@ app.use('/graphql', graphqlHTTP({
   graphiql: true,
 }));
 app.listen(4000);
+
 console.log('Running a GraphQL API server at localhost:4000/graphql');
