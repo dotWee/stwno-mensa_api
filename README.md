@@ -23,9 +23,9 @@ The following canteens are supported:
 1. [Build](###Build)
 2. [Run](###Run)
 3. [Usage](###Usage)  
-    3.1. [RESTful API](####RESTful-API)  
-    3.2. [GraphQL](####GraphQL)  
-    3.3. [gRPC](####gRPC)
+  3.1. [RESTful API](####RESTful-API)  
+  3.2. [GraphQL](####GraphQL)  
+  3.3. [gRPC](####gRPC)
 4. [Development](###Development)
 5. [Acknowledges](###Acknowledges)
 6. [License](###License)
@@ -60,6 +60,7 @@ Or http://localhost:3000/graphql about GraphQL usage
 ### Usage
 
 This Node.js application is deployed to herokuapp:
+
 - https://rgb-mensa-api.herokuapp.com/api-docs
 
 #### RESTful-API
@@ -272,7 +273,7 @@ message Menu {
     message Price {
       string students = 1;
       string employees = 2;
-      string guests = 3; 
+      string guests = 3;
     }
     Price price = 7;
   }
@@ -280,7 +281,7 @@ message Menu {
 }
 ```
 
-##### Example client (using Node.js): 
+##### Example client (using Node.js)
 
 ```js
 const grpc = require('grpc');
@@ -334,16 +335,16 @@ This application is heavily inspired by @alexanderbazo's [URMensa-JSON-API](http
 
 Copyright (c) 2018 Lukas Wolfsteiner. This project is licensed under the [_Do What The Fuck You Want To_](/LICENSE) public license:
 
-            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
-                        Version 2, December 2004 
+            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+                        Version 2, December 2004
 
     Copyright (C) 2018 Lukas Wolfsteiner <lukas@wolfsteiner.media>
 
-    Everyone is permitted to copy and distribute verbatim or modified 
-    copies of this license document, and changing it is allowed as long 
-    as the name is changed. 
+    Everyone is permitted to copy and distribute verbatim or modified
+    copies of this license document, and changing it is allowed as long
+    as the name is changed.
 
-                DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
-    TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION 
+                DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+    TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
 
     0. You just DO WHAT THE FUCK YOU WANT TO.
