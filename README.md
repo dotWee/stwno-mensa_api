@@ -24,7 +24,8 @@ The following canteens are supported:
 2. [Run](###Run)
 3. [Usage](###Usage)  
     3.1. [RESTful API](####RESTful-API)  
-    3.2. [GraphQL](####GraphQL)
+    3.2. [GraphQL](####GraphQL)  
+    3.3. [gRPC](####gRPC)
 4. [Development](###Development)
 5. [Acknowledges](###Acknowledges)
 6. [License](###License)
@@ -195,6 +196,130 @@ You can play with its service by visiting [rgb-mensa-api.herokuapp.com/graphql](
         }
     }
 }
+```
+
+#### gRPC
+
+This application also supports access using the [gRPC Framework](https://grpc.io/about/) with Google's Protocol Buffers as JSON alternative.
+
+This is what the protocol configuration looks like (_File [src/mensa.proto](src/protos/mensa.proto)_):
+
+```protobuf
+syntax = "proto3";
+
+package rgbmensaapi;
+
+// The ingredients service definition.
+service Ingredients {
+  // Returns ingredients
+  rpc GetIngredients (IngredientsRequest) returns (IngredientsResponse) {}
+}
+
+// The ingredients request, may containing a key
+message IngredientsRequest {
+    string key = 1;
+}
+
+// The ingredients response
+message IngredientsResponse {
+  message Arguments {
+    string key = 1;
+  }
+  Arguments args = 1;
+  repeated Ingredient ingredients = 2;
+}
+
+// The ingredients object
+message Ingredient {
+  string key = 1;
+  string value = 2;
+}
+
+// The menu service definition.
+service Menus {
+  // Returns menu
+  rpc GetMenus (MenuRequest) returns (MenuResponse) {}
+}
+
+// The menu request, may containing arguments
+message MenuRequest {
+  string location = 1;
+  string day = 2;
+}
+
+// The menu response
+message MenuResponse {
+  Menu menu = 2;
+}
+
+message Menu {
+  message Arguments {
+    string location = 1;
+    string day = 2;
+  }
+  Arguments args = 1;
+
+  required int64 count = 2;
+
+  message Item {
+    string name = 1;
+    string date = 2;
+    string day = 3;
+    string category = 4;
+    repeated string labels = 5;
+    repeated Ingredient ingredients = 6;
+
+    message Price {
+      string students = 1;
+      string employees = 2;
+      string guests = 3; 
+    }
+    Price price = 7;
+  }
+  repeated Item items = 3;
+}
+```
+
+##### Example client (using Node.js): 
+
+```js
+const grpc = require('grpc');
+const protoLoader = require('@grpc/proto-loader');
+
+const PROTO_PATH = __dirname + '/protos/mensa.proto';
+const packageDefinition = protoLoader.loadSync(
+  PROTO_PATH, {
+    keepCase: true,
+    longs: String,
+    enums: String,
+    defaults: true,
+    oneofs: true,
+  },
+);
+
+const protoSchema = grpc.loadPackageDefinition(packageDefinition).rgbmensaapi;
+
+function main() {
+  const clientIngredients = new protoSchema.Ingredients('localhost:50051', grpc.credentials.createInsecure());
+  clientIngredients.getIngredients({
+    key: '1',
+  }, (err, response) => {
+    console.log('Response:', response);
+    if (err) {
+      console.error(err);
+    }
+  });
+
+  const clientMenus = new protoSchema.Menus('localhost:50051', grpc.credentials.createInsecure());
+  clientMenus.getMenus({}, (err, response) => {
+    console.log('Response:', response);
+    if (err) {
+      console.error(err);
+    }
+  });
+}
+
+main();
 ```
 
 ### Development
