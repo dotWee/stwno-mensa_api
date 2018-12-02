@@ -47,11 +47,12 @@ Start the application by executing `$ npm run start`:
 ```bash
 $ npm run start
 
-> rgb-mensa_api@2.1.0 start /Users/lukas/Git/Projects/Javascript/rgb-mensa_api
-> node lib/server.js
+> rgb-mensa_api@2.2.0 start /Users/lukas/Git/Projects/Javascript/rgb-mensa_api
+> node src/server.js
 
 Updating local cache...
-Server started on port: 3000
+Webserver started on port: 3000
+GRPC listening on port: 3001
 
 See http://localhost:3000/api-docs for RESTful API docs
 Or http://localhost:3000/graphql about GraphQL usage
