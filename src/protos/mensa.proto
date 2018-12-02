@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package rgbmensaapi;
+
+// The ingredients service definition.
+service Ingredients {
+  // Returns ingredients
+  rpc GetIngredients (IngredientsRequest) returns (IngredientsResponse) {}
+}
+
+// The ingredients request, may containing a key
+message IngredientsRequest {
+    string key = 1;
+}
+
+// The ingredients response
+message IngredientsResponse {
+    repeated Ingredient ingredients = 1;
+}
+
+// The ingredients object
+message Ingredient {
+    string key = 1;
+    string value = 2;
+}
