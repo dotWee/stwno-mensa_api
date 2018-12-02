@@ -5,10 +5,10 @@
     "version": "2.2.0",
     "title": "Regensburg Mensa API",
     "contact": {
-      "email": "lukas@wolfsteiner.de"
+      "email": "lukas@wolfsteiner.media"
     },
     "license": {
-      "name": "WTFPL",
+      "name": "GPLv3",
       "url": "https://github.com/dotWee/rgb-mensa_api/blob/master/LICENSE"
     }
   },
@@ -26,6 +26,7 @@
     "https",
     "http"
   ],
+  "host": "rgb-mensa-api.herokuapp.com",
   "paths": {
     "/ingredients": {
       "get": {
