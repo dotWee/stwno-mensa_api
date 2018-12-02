@@ -1,15 +1,15 @@
 {
   "name": "rgb-mensa_api",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "A json-wrapper around the inofficial API for different canteens of the university (and university of applied sciences) in Regensburg, germany.",
   "repository": {
     "type": "git",
     "url": "https://github.com/dotWee/rgb-mensa_api.git"
   },
-  "main": "lib/server.js",
+  "main": "src/server.js",
   "scripts": {
-    "start": "node lib/server.js",
-    "nodemon": "nodemon lib/server.js",
+    "start": "node src/server.js",
+    "nodemon": "nodemon src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Lukas Wolfsteiner <lukas@wolfsteiner.media>",
@@ -21,14 +21,21 @@
     "nodemon": "^1.18.7"
   },
   "dependencies": {
+    "@grpc/proto-loader": "^0.3.0",
     "apollo-server-express": "^2.2.5",
     "body-parser": "^1.18.3",
     "csv-parse": "^3.2.0",
     "express": "^4.16.4",
     "express-graphql": "^0.7.1",
+    "fs": "0.0.1-security",
+    "google-protobuf": "^3.6.1",
     "graphql": "^14.0.2",
     "graphql-tools": "^4.0.3",
+    "grpc": "^1.17.0-pre1",
     "iconv-lite": "^0.4.24",
+    "lodash": "^4.17.11",
+    "minimist": "^1.2.0",
+    "path": "^0.12.7",
     "swagger-ui-express": "^4.0.1"
   },
   "nodemonConfig": {
