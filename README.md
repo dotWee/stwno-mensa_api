@@ -5,6 +5,7 @@
 [![devDependencies Status](https://david-dm.org/dotWee/rgb-mensa_api/dev-status.svg)](https://david-dm.org/dotWee/rgb-mensa_api?type=dev)
 [![GitHub issues](https://img.shields.io/github/issues/dotWee/rgb-mensa_api.svg)](https://github.com/dotWee/rgb-mensa_api/issues)
 [![GitHub license](https://img.shields.io/github/license/dotWee/rgb-mensa_api.svg)](https://github.com/dotWee/rgb-mensa_api)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FdotWee%2Frgb-mensa_api.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FdotWee%2Frgb-mensa_api?ref=badge_large)
 
 This node application is a json-wrapper around the inofficial API for different canteens of the university (and university of applied sciences) in Regensburg, germany.  
 
@@ -221,3 +222,5 @@ Copyright (c) 2018 Lukas Wolfsteiner. This project is licensed under the [_Do Wh
     TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION 
 
     0. You just DO WHAT THE FUCK YOU WANT TO.
+    
+Licensed under the [_Do What The Fuck You Want To_](/LICENSE) public license
