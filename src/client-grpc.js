@@ -33,10 +33,16 @@ const packageDefinition = protoLoader.loadSync(
 const rgbmensaapi_proto = grpc.loadPackageDefinition(packageDefinition).rgbmensaapi;
 
 function main() {
-  const client = new rgbmensaapi_proto.Ingredients('localhost:50051', grpc.credentials.createInsecure());
-
-  client.getIngredients({
+  /*
+  const clientIngredients = new rgbmensaapi_proto.Ingredients('localhost:50051', grpc.credentials.createInsecure());
+  clientIngredients.getIngredients({
     key: '1',
+  }, (err, response) => {
+    console.log('Response:', response);
+  });
+  */
+  const clientMenus = new rgbmensaapi_proto.Menus('localhost:50051', grpc.credentials.createInsecure());
+  clientMenus.getMenus({
   }, (err, response) => {
     console.log('Response:', response);
   });

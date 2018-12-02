@@ -23,3 +23,48 @@ message Ingredient {
     string key = 1;
     string value = 2;
 }
+
+
+// The menu service definition.
+service Menus {
+  // Returns menu
+  rpc GetMenus (MenuRequest) returns (MenuResponse) {}
+}
+
+// The menu request, may containing arguments
+message MenuRequest {
+    string location = 1;
+    string day = 2;
+}
+
+// The menu response
+message MenuResponse {
+    Menu menu = 1;
+}
+
+// The menu object
+message Menu {
+  message Arguments {
+    string location = 1;
+    string day = 2;
+  }
+  Arguments args = 1;
+  required int64 count = 2;
+
+    message Item {
+      string name = 1;
+      string date = 2;
+      string day = 3;
+      string category = 4;
+      repeated string labels = 5;
+      repeated Ingredient ingredients = 6;
+
+      message Price {
+        string students = 1;
+        string employees = 2;
+        string guests = 3; 
+      }
+      Price price = 7;
+    }
+    repeated Item items = 3;
+}

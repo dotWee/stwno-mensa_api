@@ -20,6 +20,7 @@ const grpc = require('grpc');
 const protoLoader = require('@grpc/proto-loader');
 
 const cache = require('./helper/Cache');
+const proxy = require('./helper/Proxy');
 
 const PROTO_PATH = __dirname + '/protos/mensa.proto';
 const packageDefinition = protoLoader.loadSync(
@@ -51,13 +52,51 @@ function getIngredients(call, callback) {
 }
 
 /**
+ * Implements the GetMenu RPC method.
+ */
+function getMenus(call, callback) {
+  const location = call.request.location;
+
+  let data = [];
+  const args = {};
+
+  if (location) {
+    args.location = location;
+    data = cache.readMenu(location);
+  } else {
+    proxy.locations.forEach((locationValue) => {
+      data = data.concat(cache.readMenu(locationValue));
+    });
+  }
+
+  const day = call.request.day;
+  if (day) {
+    args.day = day;
+    data = data.filter(item => item.day === cache.getDayValFromParam(day));
+  }
+
+  callback(null, {
+    menu: {
+      args: args,
+      count: data.length,
+      items: data,
+    },
+  });
+}
+
+/**
  * Starts an RPC server that receives requests for the Ingredients service at the
  * sample server port
  */
 function main() {
   const server = new grpc.Server();
+  /*
   server.addService(rgbmensaapi_proto.Ingredients.service, {
     getIngredients: getIngredients,
+  });
+  */
+  server.addService(rgbmensaapi_proto.Menus.service, {
+    getMenus: getMenus,
   });
   server.bind('0.0.0.0:50051', grpc.ServerCredentials.createInsecure());
   server.start();
