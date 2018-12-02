@@ -222,5 +222,3 @@ Copyright (c) 2018 Lukas Wolfsteiner. This project is licensed under the [_Do Wh
     TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION 
 
     0. You just DO WHAT THE FUCK YOU WANT TO.
-    
-Licensed under the [_Do What The Fuck You Want To_](/LICENSE) public license
