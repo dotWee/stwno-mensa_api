@@ -46,7 +46,7 @@ Start the application by executing `$ npm run start`:
 ```bash
 $ npm run start
 
-> rgb-mensa_api@2.0.1 start /Users/lukas/Git/Projects/Javascript/rgb-mensa_api
+> rgb-mensa_api@2.1.0 start /Users/lukas/Git/Projects/Javascript/rgb-mensa_api
 > node lib/server.js
 
 Updating local cache...
