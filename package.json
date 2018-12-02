@@ -6,10 +6,10 @@
     "type": "git",
     "url": "https://github.com/dotWee/rgb-mensa_api.git"
   },
-  "main": "lib/server.js",
+  "main": "src/server.js",
   "scripts": {
-    "start": "node lib/server.js",
-    "nodemon": "nodemon lib/server.js",
+    "start": "node src/server.js",
+    "nodemon": "nodemon src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Lukas Wolfsteiner <lukas@wolfsteiner.media>",
