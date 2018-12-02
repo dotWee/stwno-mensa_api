@@ -20,15 +20,15 @@ The following canteens are supported:
 
 ## Table of contents
 
-1. [Build](###Build)
-2. [Run](###Run)
-3. [Usage](###Usage)  
-  3.1. [RESTful API](####RESTful-API)  
-  3.2. [GraphQL](####GraphQL)  
-  3.3. [gRPC](####gRPC)
-4. [Development](###Development)
-5. [Acknowledges](###Acknowledges)
-6. [License](###License)
+1. [Build](#Build)
+2. [Run](#Run)
+3. [Usage](#Usage)  
+   - [RESTful API](#RESTful-API)  
+   - [GraphQL](#GraphQL)  
+   - [gRPC](#gRPC)
+4. [Development](#Development)
+5. [Acknowledges](#Acknowledges)
+6. [License](#License)
 
 ### Build
 
@@ -295,45 +295,10 @@ message Menu {
 
 ##### Example client (using Node.js)
 
-```js
-const grpc = require('grpc');
-const protoLoader = require('@grpc/proto-loader');
+You can find an example client written in Node.js source code in _[clients/client_grpc.js](clients/client_grpc.js)_.
 
-const PROTO_PATH = __dirname + '/protos/mensa.proto';
-const packageDefinition = protoLoader.loadSync(
-  PROTO_PATH, {
-    keepCase: true,
-    longs: String,
-    enums: String,
-    defaults: true,
-    oneofs: true,
-  },
-);
 
-const protoSchema = grpc.loadPackageDefinition(packageDefinition).rgbmensaapi;
-
-function main() {
-  const clientIngredients = new protoSchema.Ingredients('localhost:50051', grpc.credentials.createInsecure());
-  clientIngredients.getIngredients({
-    key: '1',
-  }, (err, response) => {
-    console.log('Response:', response);
-    if (err) {
-      console.error(err);
-    }
-  });
-
-  const clientMenus = new protoSchema.Menus('localhost:50051', grpc.credentials.createInsecure());
-  clientMenus.getMenus({}, (err, response) => {
-    console.log('Response:', response);
-    if (err) {
-      console.error(err);
-    }
-  });
-}
-
-main();
-```
+For execution: Open a shell window and run `$ npm run start` to get the server running. Then, open another window and run `$ node ./clients/client_grpc.js` to perform some requests and print the responses.
 
 ### Development
 
