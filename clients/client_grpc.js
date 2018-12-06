@@ -2,30 +2,31 @@ const grpc = require('grpc');
 const path = require('path');
 const protoLoader = require('@grpc/proto-loader');
 
-const PROTO_PATH = path.join(__dirname, '/../src/protos/mensa.proto');
-const HOST = 'localhost:3001';
-
-const packageDefinition = protoLoader.loadSync(
-  PROTO_PATH, {
+const host = 'localhost:3001';
+const protoPath = path.join(__dirname, '/../src/protos/mensa.proto');
+const protoSchema = grpc.loadPackageDefinition(protoLoader.loadSync(
+  protoPath, {
     keepCase: true,
     longs: String,
     enums: String,
     defaults: true,
     oneofs: true,
   },
-);
+)).rgbmensaapi;
 
-const protoSchema = grpc.loadPackageDefinition(packageDefinition).rgbmensaapi;
-
+/**
+ * Resolve ingredient with key 1.
+ */
 function getIngredients() {
-  const ingredientsClient = new protoSchema.Ingredients(HOST, grpc.credentials.createInsecure());
-  const ingredientsOpt = {
+  const client = new protoSchema.Ingredients(host, grpc.credentials.createInsecure());
+  const options = {
     key: '1',
   };
 
-  console.log('Requesting ingredients with options', ingredientsOpt);
-  ingredientsClient.getIngredients(ingredientsOpt, (err, response) => {
-    console.log('Response:', response);
+  console.log('Requesting ingredients with options', options);
+  client.getIngredients(options, (err, res) => {
+    console.log('Response:', res);
+
     if (err) {
       console.error('Error', err);
     }
@@ -33,15 +34,20 @@ function getIngredients() {
 }
 getIngredients();
 
+/**
+ * Get todays menu at university canteen.
+ */
 function getMenu() {
-  const menuClient = new protoSchema.Menus(HOST, grpc.credentials.createInsecure());
-  const menuRequestOptions = {
+  const client = new protoSchema.Menus(host, grpc.credentials.createInsecure());
+  const options = {
     location: 'uni',
+    day: 'today',
   };
 
-  console.log('Requesting menu with options', menuRequestOptions);
-  menuClient.getMenus(menuRequestOptions, (err, response) => {
-    console.log('Response:', response);
+  console.log('Requesting menu with options', options);
+  client.getMenus(options, (err, res) => {
+    console.log('Response:', res);
+
     if (err) {
       console.error('Error', err);
     }
