@@ -1,32 +1,52 @@
 const swaggerUi = require('swagger-ui-express');
 const bodyParser = require('body-parser');
 
-const cache = require('../helper/Cache');
 const swaggerDocument = require('../swagger.json');
+const Provider = require('../helper/Provider');
 
 function getIngredients(request, response) {
-  const data = cache.getIngredients();
-  response.status(200).json(data);
+  try {
+    const data = Provider.getIngredients();
+    response.status(200).json(data);
+  } catch (err) {
+    response.status(500).json(err);
+  }
 }
 
 function getIngredientsForKey(request, response) {
-  const data = cache.getIngredients()
-    .find(ingredient => ingredient.key === request.params.key);
-
-  response.status(200).json(data);
+  try {
+    const data = Provider.getIngredientsForKey(request.params.key);
+    response.status(200).json(data);
+  } catch (err) {
+    response.status(500).json(err);
+  }
 }
 
-function getMenuForLocation(request, response) {
-  const data = cache.readMenu(request.params.location);
-  response.status(200).json(data);
+function getItems(request, response) {
+  try {
+    const data = Provider.getItems();
+    response.status(200).json(data);
+  } catch (err) {
+    response.status(500).json(err);
+  }
 }
 
-function getMenuForLocationOnDay(request, response) {
-  const dayVal = cache.getDayValFromParam(request.params.day);
+function getItemsOnLocation(request, response) {
+  try {
+    const data = Provider.getItemsOnLocation(request.params.location);
+    response.status(200).json(data);
+  } catch (err) {
+    response.status(500).json(err);
+  }
+}
 
-  const data = cache.readMenu(request.params.location)
-    .filter(item => item.day === dayVal);
-  response.status(200).json(data);
+function getItemsOnLocationForDay(request, response) {
+  try {
+    const data = Provider.getItemsOnLocationForDay(request.params.location, request.params.day);
+    response.status(200).json(data);
+  } catch (err) {
+    response.status(500).json(err);
+  }
 }
 
 function toDocs(request, response) {
@@ -52,11 +72,14 @@ function addRoutes(app) {
   app.route('/ingredients/:key')
     .get(getIngredientsForKey);
 
-  app.route('/mensa/:location(uni|oth|oth-evening|pruefening)')
-    .get(getMenuForLocation);
+  app.route('/mensa')
+    .get(getItems);
 
-  app.route('/mensa/:location(uni|oth|oth-evening|pruefening)/:day(monday|tuesday|wednesday|thursday|friday|saturday|sunday|today)')
-    .get(getMenuForLocationOnDay);
+  app.route('/mensa/:location')
+    .get(getItemsOnLocation);
+
+  app.route('/mensa/:location/:day')
+    .get(getItemsOnLocationForDay);
 }
 
 module.exports = addRoutes;

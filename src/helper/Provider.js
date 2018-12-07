@@ -73,6 +73,7 @@ module.exports.isValidDay = isValidDay;
 function getIngredients() {
   return cache.getIngredients();
 }
+module.exports.getIngredients = getIngredients;
 
 /**
  * Looks for ingredients containing the provided value.
@@ -85,6 +86,7 @@ function filterIngredients(value) {
 
   return getIngredients.filter(ingredient => ingredient.value.includes(value));
 }
+module.exports.filterIngredients = filterIngredients;
 
 /**
  * Returns a specific ingredient with provided key.
@@ -97,6 +99,7 @@ function getIngredient(key) {
 
   return getIngredients.find(ingredient => ingredient.key === key);
 }
+module.exports.getIngredient = getIngredient;
 
 /**
  * Returns all items.
@@ -107,6 +110,7 @@ function getItems() {
 
   return items;
 }
+module.exports.getItems = getItems;
 
 /**
  * Returns all items for the provided location.
@@ -124,6 +128,7 @@ function getItemsOnLocation(location) {
 
   return cache.readMenu(resolvedLocation);
 }
+module.exports.getItemsOnLocation = getItemsOnLocation;
 
 /**
  * Returns all items for the provided location on given day.
@@ -144,3 +149,4 @@ function getItemsOnLocationForDay(location, day) {
 
   return getItems(location).filter(item => item.day === day);
 }
+module.exports.getItemsOnLocationForDay = getItemsOnLocationForDay;
