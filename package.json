@@ -9,7 +9,8 @@
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
-    "nodemon": "nodemon src/server.js"
+    "nodemon": "nodemon src/server.js",
+    "test": "mocha --recursive"
   },
   "author": "Lukas Wolfsteiner <lukas@wolfsteiner.media>",
   "license": "WTFPL",
