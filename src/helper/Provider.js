@@ -1,10 +1,10 @@
 const cache = require('./Cache');
 
 const LOCATIONS_ALIASES = {
-  'uni': ['university', 'universität'],
-  'oth': ['othr', 'oth-regensburg'],
-  'oth-abend': ['oth-evening'],
-  'pruefening': ['oth-pruefening', 'oth-prüfening', 'prüfening'],
+  'UNI-R': ['uni', 'university', 'universität', 'uni-regensburg'],
+  'HS-R-tag': ['oth', 'othr', 'oth-regensburg', 'seybothstrasse', 'seybothstrasse-mittags'],
+  'HS-R-abend': ['oth-abend', 'oth-evening', 'seybothstrasse-abends'],
+  'Cafeteria-Pruefening': ['pruefening', 'oth-pruefening', 'oth-prüfening', 'prüfening', 'pruefeningerstrasse-mittags'],
 };
 const LOCATIONS = Object.keys(LOCATIONS_ALIASES);
 

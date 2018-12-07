@@ -1,4 +1,5 @@
 const fs = require('fs');
+
 const ingredients = require('./Ingredients.json');
 
 exports.ingredients = ingredients;
@@ -19,7 +20,6 @@ function writeMenu(location, menu) {
   }
 
   fs.writeFileSync(filename, JSON.stringify(menu));
-  //console.log('WRITE', filename);
 }
 module.exports.writeMenu = writeMenu;
 
@@ -42,10 +42,3 @@ function getIngredients() {
   return ingredients;
 }
 exports.getIngredients = getIngredients;
-
-function getDayValFromParam(dayParam) {
-  return dayParam === 'today' ? new Date().toLocaleString('en-US', {
-    weekday: 'long'
-  }).toLocaleLowerCase() : dayParam;
-}
-exports.getDayValFromParam = getDayValFromParam;

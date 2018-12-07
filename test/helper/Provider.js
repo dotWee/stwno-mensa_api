@@ -21,7 +21,7 @@ describe('Provider', () => {
 
   describe('resolveLocation', () => {
     it('should resolve the location value', () => {
-      assert.equal(Provider.resolveLocation('universität'), 'uni');
+      assert.equal(Provider.resolveLocation('universität'), 'UNI-R');
     });
   });
 });

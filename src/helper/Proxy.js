@@ -78,8 +78,6 @@ function parseMenu(response) {
 }
 
 async function updateCacheForLocation(location) {
-  //console.log('onUpdateLocation', location);
-
   const locationTag = getLocationTag(location);
   const week = getCurrentWeek();
 
@@ -89,7 +87,6 @@ async function updateCacheForLocation(location) {
 
     if (menu) {
       cache.writeMenu(location, menu);
-      //console.log(`${location} cached with success!`);
     } else throw new Error('Error parsing the response', response);
   } else throw new Error('Invalid response', response);
 }
