@@ -15,6 +15,8 @@ function getFilename(location) {
 
 function writeMenu(location, menu) {
   const filename = getFilename(location);
+  //console.log(`writeMenu: location=${location} filename=${filename}`);
+
   if (fs.existsSync(filename)) {
     fs.unlinkSync(filename);
   }
@@ -25,16 +27,18 @@ module.exports.writeMenu = writeMenu;
 
 function readMenu(location) {
   const filename = getFilename(location);
+  //console.log(`readMenu: location=${location} filename=${filename}`);
 
   if (fs.existsSync(filename)) {
     try {
       const data = fs.readFileSync(filename);
       return JSON.parse(data);
     } catch (err) {
-      console.error(err);
-      return [];
+      throw err;
     }
-  } else return [];
+  } else {
+    throw new Error(`No cached menu for location=${location} filename=${filename}`);
+  }
 }
 module.exports.readMenu = readMenu;
 

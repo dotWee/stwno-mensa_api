@@ -4,28 +4,7 @@ const http = require('http');
 
 const parser = require('./Parser');
 const cache = require('./Cache');
-
-const locations = ['uni', 'oth', 'oth-abend', 'pruefening'];
-exports.locations = locations;
-
-function getLocationTag(location) {
-  switch (location) {
-    case 'uni':
-      return 'UNI-R';
-
-    case 'oth':
-      return 'HS-R-tag';
-
-    case 'oth-abend':
-      return 'HS-R-abend';
-
-    case 'pruefening':
-      return 'HS-R-abend';
-
-    default:
-      return undefined;
-  }
-}
+const Provider = require('./Provider');
 
 function downloadMenu(locationTag, week) {
   return new Promise((resolve, reject) => {
@@ -63,8 +42,6 @@ function parseMenu(response) {
         reject(err);
       }
 
-      //console.log(out);
-
       const cleaned = [];
       if (out) {
         out.forEach((entry) => {
@@ -78,10 +55,9 @@ function parseMenu(response) {
 }
 
 async function updateCacheForLocation(location) {
-  const locationTag = getLocationTag(location);
   const week = getCurrentWeek();
 
-  const response = await downloadMenu(locationTag, week);
+  const response = await downloadMenu(location, week);
   if (response) {
     const menu = await parseMenu(response);
 
@@ -92,7 +68,7 @@ async function updateCacheForLocation(location) {
 }
 
 function updateCache() {
-  locations.forEach((location) => {
+  Provider.LOCATIONS.forEach((location) => {
     updateCacheForLocation(location);
   });
 }

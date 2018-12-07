@@ -7,6 +7,7 @@ const LOCATIONS_ALIASES = {
   'Cafeteria-Pruefening': ['pruefening', 'oth-pruefening', 'oth-prüfening', 'prüfening', 'pruefeningerstrasse-mittags'],
 };
 const LOCATIONS = Object.keys(LOCATIONS_ALIASES);
+module.exports.LOCATIONS = LOCATIONS;
 
 function resolveLocation(locationValue) {
   let resolvedLocation;
@@ -28,23 +29,24 @@ function isValidLocation(locationValue) {
 module.exports.isValidLocation = isValidLocation;
 
 const DAYS_ALIASES = {
-  'mo': ['mo', 'montag', 'monday'],
-  'di': ['di', 'dienstag', 'tuesday'],
-  'mi': ['mi', 'mittwoch', 'wednesday'],
-  'do': ['do', 'donnerstag', 'thursday'],
-  'fr': ['fr', 'freitag', 'friday'],
-  'sa': ['sa', 'samstag', 'saturday'],
-  'so': ['so', 'sonntag', 'sunday']
+  'monday': ['mo', 'montag'],
+  'tuesday': ['di', 'dienstag'],
+  'wednesday': ['mi', 'mittwoch'],
+  'thursday': ['do', 'donnerstag'],
+  'friday': ['fr', 'freitag'],
+  'saturday': ['sa', 'samstag'],
+  'sunday': ['so', 'sonntag']
   // today, heute
 };
 const DAYS = Object.keys(DAYS_ALIASES);
+module.exports.DAYS = DAYS;
 
 function resolveDay(dayValue) {
   let resolvedDay;
 
   DAYS.forEach((dayKey) => {
-    if (dayKey === dayValue ||
-      DAYS_ALIASES[dayKey].indexOf(dayValue) > -1) {
+    if (dayKey === dayValue
+      || DAYS_ALIASES[dayKey].indexOf(dayValue) > -1) {
       resolvedDay = dayKey;
     }
   });
@@ -106,7 +108,7 @@ module.exports.getIngredientsForKey = getIngredientsForKey;
  */
 function getItems() {
   const items = [];
-  LOCATIONS.forEach(locationKey => items.push(getItems(locationKey)));
+  LOCATIONS.forEach(locationKey => items.push(cache.readMenu(locationKey)));
 
   return items;
 }
@@ -140,13 +142,14 @@ function getItemsOnLocationForDay(location, day) {
     throw new Error('Day is undefined.');
   }
 
-  const resolvedDay = (day === 'today' ||
-    day === 'heute') ? resolveToday() : resolveDay(day);
+  const resolvedDay = (day === 'today' || day === 'heute')
+    ? resolveToday() : resolveDay(day);
 
   if (!resolvedDay) {
     throw new Error(`Day ${day} is invalid.`);
   }
 
-  return getItems(location).filter(item => item.day === day);
+  //console.log(`getItemsOnLocationForDay: location=${location} day=${day} resolvedDay=${resolvedDay}`);
+  return getItemsOnLocation(location).filter(item => item.day === resolvedDay);
 }
 module.exports.getItemsOnLocationForDay = getItemsOnLocationForDay;
