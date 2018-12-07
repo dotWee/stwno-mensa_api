@@ -3,7 +3,7 @@ const protoLoader = require('@grpc/proto-loader');
 
 const Provider = require('../helper/Provider');
 
-const PROTO_PATH = `${__dirname  }/../protos/mensa.proto`;
+const PROTO_PATH = `${__dirname  }/../protos/grpc-schema.proto`;
 const packageDefinition = protoLoader.loadSync(
   PROTO_PATH, {
     keepCase: true,
