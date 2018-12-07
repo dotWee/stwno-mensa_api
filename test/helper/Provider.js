@@ -49,4 +49,11 @@ describe('Provider', () => {
       assert.equal(Provider.resolveDay('sonntag'), 'so');
     });
   });
+
+  describe('resolveToday', () => {
+    it('should resolve and validates the todays weekday', () => {
+      const todayValue = Provider.resolveToday();
+      assert.equal(Provider.isValidDay(todayValue), true);
+    });
+  });
 });

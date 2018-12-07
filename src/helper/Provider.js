@@ -12,8 +12,8 @@ function resolveLocation(locationValue) {
   let resolvedLocation;
 
   LOCATIONS.forEach((locationKey) => {
-    if (locationKey === locationValue
-      || LOCATIONS_ALIASES[locationKey].indexOf(locationValue) > -1) {
+    if (locationKey === locationValue ||
+      LOCATIONS_ALIASES[locationKey].indexOf(locationValue) > -1) {
       resolvedLocation = locationKey;
     }
   });
@@ -35,6 +35,7 @@ const DAYS_ALIASES = {
   'fr': ['fr', 'freitag', 'friday'],
   'sa': ['sa', 'samstag', 'saturday'],
   'so': ['so', 'sonntag', 'sunday']
+  // today, heute
 };
 const DAYS = Object.keys(DAYS_ALIASES);
 
@@ -42,8 +43,8 @@ function resolveDay(dayValue) {
   let resolvedDay;
 
   DAYS.forEach((dayKey) => {
-    if (dayKey === dayValue
-      || DAYS_ALIASES[dayKey].indexOf(dayValue) > -1) {
+    if (dayKey === dayValue ||
+      DAYS_ALIASES[dayKey].indexOf(dayValue) > -1) {
       resolvedDay = dayKey;
     }
   });
@@ -51,6 +52,15 @@ function resolveDay(dayValue) {
   return resolvedDay;
 }
 module.exports.resolveDay = resolveDay;
+
+function resolveToday() {
+  const todayValue = new Date().toLocaleString('en-US', {
+    weekday: 'long',
+  }).toLocaleLowerCase();
+
+  return resolveDay(todayValue);
+}
+module.exports.resolveToday = resolveToday;
 
 function isValidDay(dayValue) {
   return resolveDay(dayValue) !== undefined;
@@ -125,23 +135,12 @@ function getItemsOnLocationForDay(location, day) {
     throw new Error('Day is undefined.');
   }
 
-  const resolvedDay = resolveDay(day);
+  const resolvedDay = (day === 'today' ||
+    day === 'heute') ? resolveToday() : resolveDay(day);
+
   if (!resolvedDay) {
     throw new Error(`Day ${day} is invalid.`);
   }
 
   return getItems(location).filter(item => item.day === day);
-}
-
-/**
- * Returns all items for the provided location on given date.
- * @param {*} location
- * @param {*} date
- */
-function getItemsOnLocationForDate(location, date) {
-  if (!date) {
-    throw new Error('Date is undefined.');
-  }
-
-  return getItems(location).filter(item => item.date === date);
 }
