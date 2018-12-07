@@ -1,7 +1,7 @@
 const assert = require('assert');
 const Provider = require('../../src/helper/Provider');
 
-const TEST_LOCATION_VALUES_VALID = ['uni', 'university', 'universität', 'othr'];
+const TEST_LOCATION_VALUES_VALID = ['regensburg-universität', 'regensburg-oth', 'regensburg-oth-evening'];
 const TEST_LOCATION_VALUES_INVALID = ['oth-r', 'unis', 'univ', 'prufening', 'othre', 'prfening'];
 
 describe('Provider', () => {
@@ -21,13 +21,13 @@ describe('Provider', () => {
 
   describe('resolveLocation', () => {
     it('should resolve the location value', () => {
-      assert.equal(Provider.resolveLocation('universität'), 'UNI-R');
+      assert.equal(Provider.resolveLocation('regensburg-university'), 'UNI-R');
     });
   });
 });
 
-const TEST_DAY_VALUES_VALID = ['mo', 'dienstag', 'sonntag', 'fr'];
-const TEST_DAY_VALUES_INVALID = ['mon', 'dienst', 'frei', 'sonn'];
+const TEST_DAY_VALUES_VALID = ["mo", "dienstag", "sonntag", "fr"];
+const TEST_DAY_VALUES_INVALID = ["mon", "dienst", "frei", "sonn"];
 
 describe('Provider', () => {
   describe('isValidDay', () => {
@@ -46,7 +46,7 @@ describe('Provider', () => {
 
   describe('resolveDay', () => {
     it('should resolve the day value', () => {
-      assert.equal(Provider.resolveDay('sonntag'), 'so');
+      assert.equal(Provider.resolveDay("sonntag"), "sunday");
     });
   });
 

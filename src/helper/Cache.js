@@ -1,8 +1,12 @@
 const fs = require('fs');
 
-const ingredients = require('./Ingredients.json');
+const INGREDIENTS = require('../consts/Ingredients.json');
+const LOCATIONS = require('../consts/Locations.json');
+const DAYS = require('../consts/Days.json');
 
-exports.ingredients = ingredients;
+module.exports.INGREDIENTS = INGREDIENTS;
+module.exports.LOCATIONS = LOCATIONS;
+module.exports.DAYS = DAYS;
 
 function getFilename(location) {
   const dataDir = './data';
@@ -43,6 +47,6 @@ function readMenu(location) {
 module.exports.readMenu = readMenu;
 
 function getIngredients() {
-  return ingredients;
+  return INGREDIENTS;
 }
 exports.getIngredients = getIngredients;
