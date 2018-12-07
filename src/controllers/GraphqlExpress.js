@@ -1,26 +1,12 @@
-const {
-  buildSchema
-} = require('graphql');
+const { buildSchema } = require('graphql');
 const graphqlHTTP = require('express-graphql');
 
-const cache = require('../helper/Cache');
-const proxy = require('../helper/Proxy');
+const Provider = require('../helper/Provider');
 
 const graphqlSchema = buildSchema(`
 type Query {
   ingredients(key: String): [Ingredient]
-  menu(location: String, day: String): Menu
-}
-
-type Menu {
-  args: Arguments
-  count: Int
-  items: [Item]
-}
-
-type Arguments {
-  location: String
-  day: String
+  mensa(location: String, day: String): [Item]
 }
 
 type Ingredient {
@@ -47,37 +33,27 @@ type Item {
 
 const queries = {
   ingredients: ({
-    key
+    key,
   }) => {
-    const data = cache.ingredients;
-    return key ? [data.find(ingredient => ingredient.key === key)] : data;
+    if (key) {
+      return Provider.getIngredient(key);
+    }
+
+    return Provider.getIngredients();
   },
-  menu: ({
+  mensa: ({
     location,
-    day
+    day,
   }) => {
-    let data = [];
-    const args = {};
-
     if (location) {
-      args.location = location;
-      data = cache.readMenu(location);
-    } else {
-      proxy.locations.forEach((locationValue) => {
-        data = data.concat(cache.readMenu(locationValue));
-      });
+      if (day) {
+        return Provider.getItemsOnLocationForDay(location, day);
+      }
+
+      return Provider.getItemsOnLocation(location);
     }
 
-    if (day) {
-      args.day = day;
-      data = data.filter(item => item.day === cache.getDayValFromParam(day));
-    }
-
-    return {
-      args: args,
-      count: data.length,
-      items: data,
-    };
+    return Provider.getItems();
   },
 };
 
