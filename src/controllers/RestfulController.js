@@ -76,19 +76,19 @@ function addRoutes(app) {
   app.route('/')
     .get(toDocs);
 
-  app.route('/ingredients')
+  app.route('/api/ingredients')
     .get(getIngredients);
 
-  app.route('/ingredients/:key')
+  app.route('/api/ingredients/:key')
     .get(getIngredientsForKey);
 
-  app.route('/items')
+  app.route('/api/items')
     .get(getItems);
 
-  app.route('/items/:location')
+  app.route('/api/items/:location')
     .get(getItemsOnLocation);
 
-  app.route('/items/:location/:day')
+  app.route('/api/items/:location/:day')
     .get(getItemsOnLocationForDay);
 }
 

@@ -36,10 +36,9 @@ module.exports.getIngredients = getIngredients;
 function getItems(call, callback) {
   try {
     let data;
-    const location = call.request.location;
+    const [location, day] = [call.request.location, call.request.day];
 
     if (location) {
-      const day = call.request.day;
       if (day) {
         data = Provider.getItemsOnLocationForDay(call.request.location, call.request.day);
       } else {
