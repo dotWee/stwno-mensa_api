@@ -19,7 +19,7 @@ function getFilename(location) {
 
 function writeMenu(location, menu) {
   const filename = getFilename(location);
-  //console.log(`writeMenu: location=${location} filename=${filename}`);
+  console.log(`writeMenu: location=${location} filename=${filename}`);
 
   if (fs.existsSync(filename)) {
     fs.unlinkSync(filename);
@@ -31,7 +31,7 @@ module.exports.writeMenu = writeMenu;
 
 function readMenu(location) {
   const filename = getFilename(location);
-  //console.log(`readMenu: location=${location} filename=${filename}`);
+  console.log(`readMenu: location=${location} filename=${filename}`);
 
   if (fs.existsSync(filename)) {
     try {
