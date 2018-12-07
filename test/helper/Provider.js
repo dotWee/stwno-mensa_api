@@ -18,6 +18,12 @@ describe('Provider', () => {
       });
     });
   });
+
+  describe('resolveLocation', () => {
+    it('should resolve the location value', () => {
+      assert.equal(Provider.resolveLocation('universität'), 'uni');
+    });
+  });
 });
 
 const TEST_DAY_VALUES_VALID = ['mo', 'dienstag', 'sonntag', 'fr'];
@@ -35,6 +41,12 @@ describe('Provider', () => {
       it('should return false for day ' + dayValue, () => {
         assert.equal(Provider.isValidDay(dayValue), false);      
       });
+    });
+  });
+
+  describe('resolveDay', () => {
+    it('should resolve the day value', () => {
+      assert.equal(Provider.resolveDay('sonntag'), 'so');
     });
   });
 });

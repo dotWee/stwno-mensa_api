@@ -20,6 +20,8 @@ function resolveLocation(locationValue) {
 
   return resolvedLocation;
 }
+module.exports.resolveLocation = resolveLocation;
+
 function isValidLocation(locationValue) {
   return resolveLocation(locationValue) !== undefined;
 }
@@ -48,6 +50,7 @@ function resolveDay(dayValue) {
 
   return resolvedDay;
 }
+module.exports.resolveDay = resolveDay;
 
 function isValidDay(dayValue) {
   return resolveDay(dayValue) !== undefined;
