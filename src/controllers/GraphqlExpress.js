@@ -1,4 +1,6 @@
-const { buildSchema } = require('graphql');
+const {
+  buildSchema
+} = require('graphql');
 const graphqlHTTP = require('express-graphql');
 
 const cache = require('../helper/Cache');
@@ -44,11 +46,16 @@ type Item {
 `);
 
 const queries = {
-  ingredients: ({ key }) => {
+  ingredients: ({
+    key
+  }) => {
     const data = cache.ingredients;
     return key ? [data.find(ingredient => ingredient.key === key)] : data;
   },
-  menu: ({ location, day }) => {
+  menu: ({
+    location,
+    day
+  }) => {
     let data = [];
     const args = {};
 

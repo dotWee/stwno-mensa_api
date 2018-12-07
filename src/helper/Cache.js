@@ -44,6 +44,8 @@ function getIngredients() {
 exports.getIngredients = getIngredients;
 
 function getDayValFromParam(dayParam) {
-  return dayParam === 'today' ? new Date().toLocaleString('en-US', { weekday: 'long' }).toLocaleLowerCase() : dayParam;
+  return dayParam === 'today' ? new Date().toLocaleString('en-US', {
+    weekday: 'long'
+  }).toLocaleLowerCase() : dayParam;
 }
 exports.getDayValFromParam = getDayValFromParam;

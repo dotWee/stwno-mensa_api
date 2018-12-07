@@ -34,7 +34,9 @@ function toDocs(request, response) {
 }
 
 function addRoutes(app) {
-  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(bodyParser.urlencoded({
+    extended: true
+  }));
   app.use(bodyParser.json());
 
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, {
