@@ -19,3 +19,22 @@ describe('Provider', () => {
     });
   });
 });
+
+const TEST_DAY_VALUES_VALID = ['mo', 'dienstag', 'sonntag', 'fr'];
+const TEST_DAY_VALUES_INVALID = ['mon', 'dienst', 'frei', 'sonn'];
+
+describe('Provider', () => {
+  describe('isValidDay', () => {
+    TEST_DAY_VALUES_VALID.forEach((dayValue) => {
+      it('should return true for day ' + dayValue, () => {
+        assert.equal(Provider.isValidDay(dayValue), true);      
+      });
+    });
+
+    TEST_DAY_VALUES_INVALID.forEach((dayValue) => {
+      it('should return false for day ' + dayValue, () => {
+        assert.equal(Provider.isValidDay(dayValue), false);      
+      });
+    });
+  });
+});
