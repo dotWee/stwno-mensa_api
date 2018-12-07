@@ -1,10 +1,9 @@
 const grpc = require('grpc');
 const protoLoader = require('@grpc/proto-loader');
 
-const cache = require('../helper/Cache');
-const proxy = require('../helper/Proxy');
+const Provider = require('../helper/Provider');
 
-const PROTO_PATH = __dirname + '/../protos/mensa.proto';
+const PROTO_PATH = `${__dirname  }/../protos/mensa.proto`;
 const packageDefinition = protoLoader.loadSync(
   PROTO_PATH, {
     keepCase: true,
@@ -21,61 +20,49 @@ module.exports.protoSchema = protoSchema;
  * Implements the GetIngredients RPC method.
  */
 function getIngredients(call, callback) {
-  let data = cache.ingredients;
-  const args = {
-    key: call.request.key,
-  };
-
-  if (args.key) {
-    data = [data.find(ingredient => ingredient.key === args.key)];
+  try {
+    const data = (call.request.key)
+      ? Provider.getIngredient(call.request.key) : Provider.getIngredients();
+    callback(null, data);
+  } catch (err) {
+    callback(err);
   }
-
-  callback(null, {
-    args,
-    ingredients: data,
-  });
 }
 module.exports.getIngredients = getIngredients;
 
 /**
  * Implements the GetMenu RPC method.
  */
-function getMenus(call, callback) {
-  const args = {
-    location: call.request.location,
-    day: call.request.day,
-  };
+function getItems(call, callback) {
+  try {
+    let data;
+    const location = call.request.location;
 
-  let data = [];
-  if (args.location) {
-    data = cache.readMenu(args.location);
-  } else {
-    proxy.locations.forEach((locationValue) => {
-      data = data.concat(cache.readMenu(locationValue));
-    });
+    if (location) {
+      const day = call.request.day;
+      if (day) {
+        data = Provider.getItemsOnLocationForDay(call.request.location, call.request.day);
+      } else {
+        data = Provider.getItemsOnLocation(call.request.location);
+      }
+    } else {
+      data = Provider.getItems();
+    }
+
+    callback(null, data);
+  } catch (err) {
+    callback(err);
   }
-
-  if (args.day) {
-    data = data.filter(item => item.day === cache.getDayValFromParam(args.day));
-  }
-
-  callback(null, {
-    menu: {
-      args,
-      count: data.length,
-      items: data,
-    },
-  });
 }
-module.exports.getMenus = getMenus;
+module.exports.getItems = getItems;
 
 function addServices(server) {
   server.addService(protoSchema.Ingredients.service, {
     getIngredients,
   });
 
-  server.addService(protoSchema.Menus.service, {
-    getMenus,
+  server.addService(protoSchema.Items.service, {
+    getItems,
   });
-};
+}
 module.exports.addServices = addServices;
