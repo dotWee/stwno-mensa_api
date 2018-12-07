@@ -3,7 +3,7 @@ const path = require('path');
 const protoLoader = require('@grpc/proto-loader');
 
 const host = 'localhost:3001';
-const protoPath = path.join(__dirname, '/../src/protos/mensa.proto');
+const protoPath = path.join(__dirname, '/../src/protos/grpc-schema.proto');
 const protoSchema = grpc.loadPackageDefinition(protoLoader.loadSync(
   protoPath, {
     keepCase: true,
@@ -37,15 +37,15 @@ getIngredients();
 /**
  * Get todays menu at university canteen.
  */
-function getMenu() {
-  const client = new protoSchema.Menus(host, grpc.credentials.createInsecure());
+function getItems() {
+  const client = new protoSchema.Items(host, grpc.credentials.createInsecure());
   const options = {
     location: 'uni',
     day: 'today',
   };
 
   console.log('Requesting menu with options', options);
-  client.getMenus(options, (err, res) => {
+  client.getItems(options, (err, res) => {
     console.log('Response:', res);
 
     if (err) {
@@ -53,4 +53,4 @@ function getMenu() {
     }
   });
 }
-getMenu();
+getItems();
