@@ -92,14 +92,14 @@ module.exports.filterIngredients = filterIngredients;
  * Returns a specific ingredient with provided key.
  * @param {*} key
  */
-function getIngredient(key) {
+function getIngredientsForKey(key) {
   if (!key) {
     throw new Error('Key value is undefined.');
   }
 
-  return getIngredients.find(ingredient => ingredient.key === key);
+  return getIngredients().filter(ingredient => ingredient.key === key);
 }
-module.exports.getIngredient = getIngredient;
+module.exports.getIngredientsForKey = getIngredientsForKey;
 
 /**
  * Returns all items.

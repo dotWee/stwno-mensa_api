@@ -22,7 +22,7 @@ module.exports.protoSchema = protoSchema;
 function getIngredients(call, callback) {
   try {
     const data = (call.request.key)
-      ? Provider.getIngredient(call.request.key) : Provider.getIngredients();
+      ? Provider.getIngredientsForKey(call.request.key) : Provider.getIngredients();
     callback(null, data);
   } catch (err) {
     callback(err);
