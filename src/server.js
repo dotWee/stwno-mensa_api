@@ -10,10 +10,10 @@ const portGrpc = port + 1;
 app.listen(port);
 
 // add restful controller
-require('./controllers/RestfulExpress')(app);
+require('./controllers/RestfulController')(app);
 
 // add graph controller
-require('./controllers/GraphqlExpress')(app);
+require('./controllers/GraphqlController')(app);
 
 // add grpc services
 const server = new grpc.Server();
