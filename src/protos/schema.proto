@@ -15,6 +15,7 @@ message IngredientsRequest {
 
 // The ingredients response
 message IngredientsResponse {
+  Error error = 1;
   repeated Ingredient ingredients = 2;
 }
 
@@ -38,7 +39,8 @@ message ItemsRequest {
 
 // The items response
 message ItemsResponse {
-  repeated Item items = 1;
+  Error error = 1;
+  repeated Item items = 2;
 }
 
 message Item {
@@ -55,4 +57,9 @@ message Item {
     string guests = 3; 
   }
   Price price = 7;
+}
+
+message Error {
+  string name = 1;
+  string message = 2;
 }

@@ -4,6 +4,9 @@ const bodyParser = require('body-parser');
 const swaggerDocument = require('../swagger.json');
 const Provider = require('../helper/Provider');
 
+const InvalidLocationParameterError = require('../errors/InvalidLocationParameterError');
+const InvalidDayParameterError = require('../errors/InvalidDayParameterError');
+
 function getIngredients(request, response) {
   console.log(`getIngredients: request=${request}`);
 
@@ -11,7 +14,7 @@ function getIngredients(request, response) {
     const data = Provider.getIngredients();
     response.status(200).json(data);
   } catch (err) {
-    response.status(500).json(err);
+    response.status(500).json({ error: err });
   }
 }
 
@@ -22,7 +25,7 @@ function getIngredientsForKey(request, response) {
     const data = Provider.getIngredientsForKey(request.params.key);
     response.status(200).json(data);
   } catch (err) {
-    response.status(500).json(err);
+    response.status(500).json({ error: err });
   }
 }
 
@@ -33,7 +36,7 @@ function getItems(request, response) {
     const data = Provider.getItems();
     response.status(200).json(data);
   } catch (err) {
-    response.status(500).json(err);
+    response.status(400).json({ error: err });
   }
 }
 
@@ -41,10 +44,16 @@ function getItemsOnLocation(request, response) {
   console.log(`getItemsOnLocation: request=${request}`);
 
   try {
+    const [location] = [request.params.location];
+
+    if (!Provider.isValidLocation(location)) {
+      throw new InvalidLocationParameterError(location);
+    }
+
     const data = Provider.getItemsOnLocation(request.params.location);
     response.status(200).json(data);
   } catch (err) {
-    response.status(500).json(err);
+    response.status(400).json({ error: err });
   }
 }
 
@@ -52,10 +61,20 @@ function getItemsOnLocationForDay(request, response) {
   console.log(`getItemsOnLocationForDay: request=${request}`);
 
   try {
-    const data = Provider.getItemsOnLocationForDay(request.params.location, request.params.day);
+    const [location, day] = [request.params.location, request.params.day];
+
+    if (!Provider.isValidLocation(location)) {
+      throw new InvalidLocationParameterError(location);
+    }
+
+    if (!Provider.isValidDay(day)) {
+      throw new InvalidDayParameterError(day);
+    }
+
+    const data = Provider.getItemsOnLocationForDay(location, day);
     response.status(200).json(data);
   } catch (err) {
-    response.status(500).json(err);
+    response.status(400).json({ error: err });
   }
 }
 

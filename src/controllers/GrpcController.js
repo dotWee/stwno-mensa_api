@@ -3,7 +3,10 @@ const protoLoader = require('@grpc/proto-loader');
 
 const Provider = require('../helper/Provider');
 
-const PROTO_PATH = `${__dirname  }/../protos/grpc-schema.proto`;
+const InvalidLocationParameterError = require('../errors/InvalidLocationParameterError');
+const InvalidDayParameterError = require('../errors/InvalidDayParameterError');
+
+const PROTO_PATH = `${__dirname}/../protos/schema.proto`;
 const packageDefinition = protoLoader.loadSync(
   PROTO_PATH, {
     keepCase: true,
@@ -23,9 +26,9 @@ function getIngredients(call, callback) {
   try {
     const data = (call.request.key)
       ? Provider.getIngredientsForKey(call.request.key) : Provider.getIngredients();
-    callback(null, data);
+    callback(null, { ingredients: data });
   } catch (err) {
-    callback(err);
+    callback({ error: err });
   }
 }
 module.exports.getIngredients = getIngredients;
@@ -39,7 +42,15 @@ function getItems(call, callback) {
     const [location, day] = [call.request.location, call.request.day];
 
     if (location) {
+      if (!Provider.isValidLocation(location)) {
+        throw new InvalidLocationParameterError(location);
+      }
+
       if (day) {
+        if (!Provider.isValidDay(day)) {
+          throw new InvalidDayParameterError(day);
+        }
+
         data = Provider.getItemsOnLocationForDay(call.request.location, call.request.day);
       } else {
         data = Provider.getItemsOnLocation(call.request.location);
@@ -48,9 +59,9 @@ function getItems(call, callback) {
       data = Provider.getItems();
     }
 
-    callback(null, data);
+    callback(null, { items: data });
   } catch (err) {
-    callback(err);
+    callback({ error: err });
   }
 }
 module.exports.getItems = getItems;
