@@ -1,4 +1,4 @@
-const ingredients = require('./Ingredients.json');
+const ingredients = require('../consts/Ingredients.json');
 
 function parseDay(tag) {
   let day;

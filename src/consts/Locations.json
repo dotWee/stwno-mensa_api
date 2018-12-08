@@ -1,0 +1,19 @@
+{
+    "UNI-R": ["regensburg-university", "regensburg-universität"],
+    "UNI-R-Gs": ["regensburg-university-gaestesaal", "regensburg-universität-gästesaal"],
+    "Cafeteria-PT": ["regensburg-university-cafeteria-pt", "regensburg-universität-cafeteria-pt"],
+    "Cafeteria-Chemie": ["regensburg-university-cafeteria-chemestry", "regensburg-universität-cafeteria-chemie"],
+    "Cafeteria-Sport": ["regensburg-university-cafeteria-sports", "regensburg-universität-cafeteria-sport"],
+
+    "HS-R-tag": ["regensburg-oth", "regensburg-seybothstrasse"],
+    "HS-R-abend": ["regensburg-oth-abend", "regensburg-oth-evening", "regensburg-seybothstrasse-abends"],
+    "Cafeteria-Pruefening": ["regensburg-oth-pruefening", "regensburg-pruefening", "oth-prüfening"],
+
+    "UNI-P": ["parsberg-university", "parsberg-universität"],
+    "Cafeteria-Nikolakloster": ["parsberg-nikolakloster", "parsberg-university-nikolakloster", "parsberg-universität-nikolakloster"],
+
+    "HS-DEG": ["deggendorf-hs"],
+    "HS-LA": ["landshut-haw"],
+    "HS-RA": ["straubing-tum"],
+    "HS-PAN": ["pfarrkirchen"]
+}
