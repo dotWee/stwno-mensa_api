@@ -17,7 +17,7 @@ const packageDefinition = protoLoader.loadSync(
   },
 );
 
-const protoSchema = grpc.loadPackageDefinition(packageDefinition).rgbmensaapi;
+const protoSchema = grpc.loadPackageDefinition(packageDefinition).stwno_mensa_api;
 module.exports.protoSchema = protoSchema;
 /**
  * Implements the GetIngredients RPC method.

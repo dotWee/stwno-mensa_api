@@ -12,7 +12,7 @@ const protoSchema = grpc.loadPackageDefinition(protoLoader.loadSync(
     defaults: true,
     oneofs: true,
   },
-)).rgbmensaapi;
+)).stwno_mensa_api;
 
 /**
  * Resolve ingredient with key 1.

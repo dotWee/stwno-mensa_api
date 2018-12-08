@@ -8,7 +8,7 @@ const InvalidDayParameterError = require('../errors/InvalidDayParameterError');
 const graphqlSchema = buildSchema(`
 type Query {
   ingredients(key: String): [Ingredient]
-  mensa(location: String, day: String): [Item]
+  items(location: String, day: String): [Item]
 }
 
 type Ingredient {
@@ -43,7 +43,7 @@ const queries = {
     key,
   }) => {
     if (key) {
-      return Provider.getIngredient(key);
+      return Provider.getIngredientsForKey(key);
     }
 
     return Provider.getIngredients();
