@@ -42,7 +42,7 @@ Start the application by executing `$ npm run start`:
 ```bash
 $ npm run start
 
-> stwno-mensa_api@2.2.0 start /Users/lukas/Git/Projects/Javascript/stwno-mensa_api
+> stwno-mensa_api@3.0.0 start /Users/lukas/Git/Projects/Javascript/stwno-mensa_api
 > node src/server.js
 
 Updating local cache...

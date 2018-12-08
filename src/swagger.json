@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "description": "A json- / grpc- / graphql-wrapper around the inofficial API for different canteens managed by the Studentenwerk Niederbayern/Oberpfalz.",
-    "version": "2.2.0",
+    "version": "3.0.0",
     "title": "Studentenwerk Niederbayern/Oberpfalz Mensa API",
     "contact": {
       "email": "lukas@wolfsteiner.media"

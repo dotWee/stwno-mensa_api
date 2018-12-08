@@ -1,6 +1,6 @@
 {
   "name": "stwno-mensa_api",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "description": "A json- / grpc- / graphql-wrapper around the inofficial API for different canteens managed by the Studentenwerk Niederbayern/Oberpfalz.",
   "repository": {
     "type": "git",
