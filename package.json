@@ -1,10 +1,10 @@
 {
-  "name": "rgb-mensa_api",
+  "name": "stwno-mensa_api",
   "version": "2.2.0",
-  "description": "A json-wrapper around the inofficial API for different canteens of the university (and university of applied sciences) in Regensburg, germany.",
+  "description": "A json- / grpc- / graphql-wrapper around the inofficial API for different canteens managed by the Studentenwerk Niederbayern/Oberpfalz.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dotWee/rgb-mensa_api.git"
+    "url": "https://github.com/dotWee/stwno-mensa_api.git"
   },
   "main": "src/server.js",
   "scripts": {

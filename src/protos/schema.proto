@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package rgbmensaapi;
+package stwno_mensa_api;
 
 // The ingredients service definition.
 service Ingredients {
