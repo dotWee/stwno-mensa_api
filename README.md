@@ -65,7 +65,7 @@ Checkout the [API documentation](https://rgb-mensa-api.herokuapp.com/api-docs) g
 
 Example path to get todays menu for the university canteen:
 
-    GET /mensa/uni/today
+    GET /api/items/regensburg-university/today
 
 ```json
 [
