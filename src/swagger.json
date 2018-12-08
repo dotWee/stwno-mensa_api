@@ -1,9 +1,9 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "A json-wrapper around the inofficial API for different canteens of the university (and university of applied sciences) in Regensburg, germany.",
+    "description": "A json- / grpc- / graphql-wrapper around the inofficial API for different canteens managed by the Studentenwerk Niederbayern/Oberpfalz.",
     "version": "2.2.0",
-    "title": "Regensburg Mensa API",
+    "title": "Studentenwerk Niederbayern/Oberpfalz Mensa API",
     "contact": {
       "email": "lukas@wolfsteiner.media"
     },
@@ -12,33 +12,23 @@
       "url": "https://github.com/dotWee/stwno-mensa_api/blob/master/LICENSE"
     }
   },
-  "basePath": "/",
   "tags": [{
-      "name": "Menu",
-      "description": "Menu of a specific canteen"
-    },
-    {
-      "name": "Ingredients",
-      "description": "Possible ingredients for menu items"
-    }
-  ],
-  "schemes": [
-    "https",
-    "http"
-  ],
-  "host": "rgb-mensa-api.herokuapp.com",
+    "name": "Items",
+    "description": "Items on the canteen menu plan"
+  }, {
+    "name": "Ingredients",
+    "description": "Possible ingredients for menu items"
+  }],
+  "schemes": ["https", "http"],
+  "host": "stwno-mensa-api.herokuapp.com",
   "paths": {
     "/ingredients": {
       "get": {
-        "tags": [
-          "Ingredients"
-        ],
+        "tags": ["Ingredients"],
         "summary": "Get a list of possible ingredients",
         "description": "Returns a list of possible ingredients",
         "operationId": "getIngredients",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [],
         "responses": {
           "200": {
@@ -52,15 +42,11 @@
     },
     "/ingredients/{key}": {
       "get": {
-        "tags": [
-          "Ingredients"
-        ],
+        "tags": ["Ingredients"],
         "summary": "Get ingredient matching the supplied key",
         "description": "Returns ingredient matching the supplied key",
         "operationId": "getIngredientsForKey",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [{
           "name": "key",
           "in": "path",
@@ -74,91 +60,118 @@
             "schema": {
               "$ref": "#/definitions/Ingredient"
             }
-          }
-        }
-      }
-    },
-    "/mensa/{location}": {
-      "get": {
-        "tags": [
-          "Menu"
-        ],
-        "summary": "Get menu of a supplied canteen",
-        "description": "Returns a menu of givien canteen",
-        "operationId": "getMenuForLocation",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [{
-          "name": "location",
-          "in": "path",
-          "description": "Name of a supported canteen",
-          "required": true,
-          "type": "string",
-          "enum": [
-            "uni",
-            "oth",
-            "oth-evening",
-            "pruefening"
-          ]
-        }],
-        "responses": {
-          "200": {
-            "description": "Successful operation",
+          },
+          "500": {
+            "description": "Internal server error",
             "schema": {
-              "$ref": "#/definitions/Menu"
+              "$ref": "#/definitions/ErrorResponse"
             }
           }
         }
       }
     },
-    "/mensa/{location}/{day}": {
+    "/api/items": {
       "get": {
-        "tags": [
-          "Menu"
-        ],
-        "summary": "Get menu of a supplied canteen on specific weekday",
-        "description": "Returns menu of supplied canteen on specific weekday",
-        "operationId": "getMenuForLocationOnDay",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [{
-            "name": "location",
-            "in": "path",
-            "description": "Name of a supported canteen",
-            "required": true,
-            "type": "string",
-            "enum": [
-              "uni",
-              "oth",
-              "oth-evening",
-              "pruefening"
-            ]
-          },
-          {
-            "name": "day",
-            "in": "path",
-            "description": "Weekday",
-            "required": true,
-            "type": "string",
-            "enum": [
-              "monday",
-              "tuesday",
-              "wednesday",
-              "thursday",
-              "friday",
-              "saturday",
-              "sunday",
-              "today"
-            ]
-          }
-        ],
+        "tags": ["Items"],
+        "summary": "Get all cached items",
+        "description": "Returns a list of items of all cached items",
+        "operationId": "getItems",
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "Successful operation",
             "schema": {
-              "$ref": "#/definitions/Menu"
+              "$ref": "#/definitions/ItemsResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/items/{location}": {
+      "get": {
+        "tags": ["Items"],
+        "summary": "Get items of a supplied canteen",
+        "description": "Returns a list of items of givien canteen",
+        "operationId": "getItemsForLocation",
+        "produces": ["application/json"],
+        "parameters": [{
+          "name": "location",
+          "in": "path",
+          "description": "Name of a supported canteen",
+          "required": true,
+          "type": "string"
+        }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/ItemsResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/items/{location}/{day}": {
+      "get": {
+        "tags": ["Items"],
+        "summary": "Get items of a supplied canteen on specific weekday",
+        "description": "Returns a list of items of supplied canteen on specific weekday",
+        "operationId": "getItemsForLocationOnDay",
+        "produces": ["application/json"],
+        "parameters": [{
+          "name": "location",
+          "in": "path",
+          "description": "Name of a supported canteen",
+          "required": true,
+          "type": "string"
+        }, {
+          "name": "day",
+          "in": "path",
+          "description": "Weekday",
+          "required": true,
+          "type": "string"
+        }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/ItemsResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
             }
           }
         }
@@ -166,6 +179,27 @@
     }
   },
   "definitions": {
+    "Error": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "InvalidLocationParameterError"
+        },
+        "message": {
+          "type": "string",
+          "example": "Value for location=uni is invalid. See documentation for possible values."
+        }
+      }
+    },
+    "ErrorResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/Error"
+        }
+      }
+    },
     "Ingredient": {
       "type": "object",
       "properties": {
@@ -218,7 +252,7 @@
         }
       }
     },
-    "Menu": {
+    "ItemsResponse": {
       "type": "array",
       "items": {
         "$ref": "#/definitions/Item"
