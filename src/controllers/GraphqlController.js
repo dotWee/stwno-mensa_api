@@ -2,6 +2,8 @@ const { buildSchema } = require('graphql');
 const graphqlHTTP = require('express-graphql');
 
 const Provider = require('../helper/Provider');
+const InvalidLocationParameterError = require('../errors/InvalidLocationParameterError');
+const InvalidDayParameterError = require('../errors/InvalidDayParameterError');
 
 const graphqlSchema = buildSchema(`
 type Query {
@@ -29,6 +31,11 @@ type Item {
   ingredients: [Ingredient]
   price: Price!
 }
+
+type Error {
+  name: String!
+  message: String!
+}
 `);
 
 const queries = {
@@ -46,7 +53,15 @@ const queries = {
     day,
   }) => {
     if (location) {
+      if (!Provider.isValidLocation(location)) {
+        return new InvalidLocationParameterError(location);
+      }
+
       if (day) {
+        if (!Provider.isValidDay(day)) {
+          return new InvalidDayParameterError(day);
+        }
+
         return Provider.getItemsOnLocationForDay(location, day);
       }
 

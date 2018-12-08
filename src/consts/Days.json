@@ -1,0 +1,9 @@
+{
+    "monday": ["mo", "montag"],
+    "tuesday": ["di", "dienstag"],
+    "wednesday": ["mi", "mittwoch"],
+    "thursday": ["do", "donnerstag"],
+    "friday": ["fr", "freitag"],
+    "saturday": ["sa", "samstag"],
+    "sunday": ["so", "sonntag"]
+  }

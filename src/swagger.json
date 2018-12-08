@@ -9,7 +9,7 @@
     },
     "license": {
       "name": "GPLv3",
-      "url": "https://github.com/dotWee/rgb-mensa_api/blob/master/LICENSE"
+      "url": "https://github.com/dotWee/stwno-mensa_api/blob/master/LICENSE"
     }
   },
   "basePath": "/",
@@ -227,6 +227,6 @@
   },
   "externalDocs": {
     "description": "Source code",
-    "url": "https://github.com/dotWee/rgb-mensa_api"
+    "url": "https://github.com/dotWee/stwno-mensa_api"
   }
 }

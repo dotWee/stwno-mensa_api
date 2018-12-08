@@ -68,7 +68,7 @@ async function updateCacheForLocation(location) {
 }
 
 function updateCache() {
-  Provider.LOCATIONS.forEach((location) => {
+  Object.keys(cache.LOCATIONS).forEach((location) => {
     updateCacheForLocation(location);
   });
 }

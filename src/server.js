@@ -9,8 +9,8 @@ const port = process.env.PORT || 3000;
 const portGrpc = port + 1;
 app.listen(port);
 
-// add restful controller
-require('./controllers/RestfulController')(app);
+// add restful json controller
+require('./controllers/RestfulJsonController')(app);
 
 // add graph controller
 require('./controllers/GraphqlController')(app);

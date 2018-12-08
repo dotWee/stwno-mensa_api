@@ -1,8 +1,12 @@
 const fs = require('fs');
 
-const ingredients = require('./Ingredients.json');
+const INGREDIENTS = require('../consts/Ingredients.json');
+const LOCATIONS = require('../consts/Locations.json');
+const DAYS = require('../consts/Days.json');
 
-exports.ingredients = ingredients;
+module.exports.INGREDIENTS = INGREDIENTS;
+module.exports.LOCATIONS = LOCATIONS;
+module.exports.DAYS = DAYS;
 
 function getFilename(location) {
   const dataDir = './data';
@@ -15,7 +19,7 @@ function getFilename(location) {
 
 function writeMenu(location, menu) {
   const filename = getFilename(location);
-  //console.log(`writeMenu: location=${location} filename=${filename}`);
+  console.log(`writeMenu: location=${location} filename=${filename}`);
 
   if (fs.existsSync(filename)) {
     fs.unlinkSync(filename);
@@ -27,7 +31,7 @@ module.exports.writeMenu = writeMenu;
 
 function readMenu(location) {
   const filename = getFilename(location);
-  //console.log(`readMenu: location=${location} filename=${filename}`);
+  console.log(`readMenu: location=${location} filename=${filename}`);
 
   if (fs.existsSync(filename)) {
     try {
@@ -43,6 +47,6 @@ function readMenu(location) {
 module.exports.readMenu = readMenu;
 
 function getIngredients() {
-  return ingredients;
+  return INGREDIENTS;
 }
 exports.getIngredients = getIngredients;

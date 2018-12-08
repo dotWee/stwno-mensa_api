@@ -1,20 +1,11 @@
 const cache = require('./Cache');
 
-const LOCATIONS_ALIASES = {
-  'UNI-R': ['uni', 'university', 'universität', 'uni-regensburg'],
-  'HS-R-tag': ['oth', 'othr', 'oth-regensburg', 'seybothstrasse', 'seybothstrasse-mittags'],
-  'HS-R-abend': ['oth-abend', 'oth-evening', 'seybothstrasse-abends'],
-  'Cafeteria-Pruefening': ['pruefening', 'oth-pruefening', 'oth-prüfening', 'prüfening', 'pruefeningerstrasse-mittags'],
-};
-const LOCATIONS = Object.keys(LOCATIONS_ALIASES);
-module.exports.LOCATIONS = LOCATIONS;
-
 function resolveLocation(locationValue) {
   let resolvedLocation;
 
-  LOCATIONS.forEach((locationKey) => {
+  Object.keys(cache.LOCATIONS).forEach((locationKey) => {
     if (locationKey === locationValue ||
-      LOCATIONS_ALIASES[locationKey].indexOf(locationValue) > -1) {
+      cache.LOCATIONS[locationKey].indexOf(locationValue) > -1) {
       resolvedLocation = locationKey;
     }
   });
@@ -28,25 +19,12 @@ function isValidLocation(locationValue) {
 }
 module.exports.isValidLocation = isValidLocation;
 
-const DAYS_ALIASES = {
-  'monday': ['mo', 'montag'],
-  'tuesday': ['di', 'dienstag'],
-  'wednesday': ['mi', 'mittwoch'],
-  'thursday': ['do', 'donnerstag'],
-  'friday': ['fr', 'freitag'],
-  'saturday': ['sa', 'samstag'],
-  'sunday': ['so', 'sonntag']
-  // today, heute
-};
-const DAYS = Object.keys(DAYS_ALIASES);
-module.exports.DAYS = DAYS;
-
 function resolveDay(dayValue) {
   let resolvedDay;
 
-  DAYS.forEach((dayKey) => {
+  Object.keys(cache.DAYS).forEach((dayKey) => {
     if (dayKey === dayValue
-      || DAYS_ALIASES[dayKey].indexOf(dayValue) > -1) {
+      || cache.DAYS[dayKey].indexOf(dayValue) > -1) {
       resolvedDay = dayKey;
     }
   });
@@ -108,7 +86,7 @@ module.exports.getIngredientsForKey = getIngredientsForKey;
  */
 function getItems() {
   const items = [];
-  LOCATIONS.forEach(locationKey => items.push(cache.readMenu(locationKey)));
+  Object.keys(cache.LOCATIONS).forEach(locationKey => items.push(cache.readMenu(locationKey)));
 
   return items;
 }
