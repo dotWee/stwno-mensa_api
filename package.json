@@ -37,7 +37,8 @@
     "lodash": "^4.17.11",
     "minimist": "^1.2.0",
     "path": "^0.12.7",
-    "swagger-ui-express": "^4.0.1"
+    "swagger-ui-express": "^4.0.1",
+    "yamljs": "^0.3.0"
   },
   "nodemonConfig": {
     "ignore": [
