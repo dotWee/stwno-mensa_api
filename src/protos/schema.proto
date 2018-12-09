@@ -2,9 +2,32 @@ syntax = "proto3";
 
 package stwno_mensa_api;
 
-// The ingredients service definition.
+// The days service definition.
+service Days {
+  // Returns days
+  rpc GetDays (DaysRequest) returns (DaysResponse) {}
+}
+
+// The days request
+message DaysRequest {
+
+}
+
+// The days response
+message DaysResponse {
+  Error error = 1;
+  repeated Day days = 2;
+}
+
+// The day object
+message Day {
+  string key = 1;
+  repeated string aliases = 2;
+}
+
+// The locations service definition.
 service Locations {
-  // Returns ingredients
+  // Returns locations
   rpc GetLocations (LocationsRequest) returns (LocationsResponse) {}
 }
 
