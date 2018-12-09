@@ -1,0 +1,241 @@
+openapi: 3.0.0
+info:
+  description: >-
+    A json- / grpc- / graphql-wrapper around the inofficial API for different
+    canteens managed by the Studentenwerk Niederbayern/Oberpfalz.
+  version: "3.0.0"
+  title: Studentenwerk Niederbayern/Oberpfalz Mensa API
+  contact:
+    email: lukas@wolfsteiner.media
+  license:
+    name: GPLv3
+    url: 'https://github.com/dotWee/stwno-mensa_api/blob/master/LICENSE'
+servers:
+  - url: https://stwno-mensa-api.herokuapp.com
+    description: Deployment on herokuapp
+  - url: http://localhost:3000
+    description: Local machine
+tags:
+  - name: Items
+    description: Items on the canteen menu plan
+  - name: Ingredients
+    description: Possible ingredients for menu items
+paths:
+  '/api/ingredients':
+    get:
+      tags:
+        - Ingredients
+      summary: Get a list of possible ingredients
+      description: Returns a list of possible ingredients
+      operationId: getIngredients
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngredientsResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/api/ingredients/{key}':
+    get:
+      tags:
+        - Ingredients
+      summary: Get ingredient matching the supplied key
+      description: Returns ingredient matching the supplied key
+      operationId: getIngredientsForKey
+      parameters:
+        - name: key
+          in: path
+          description: Key of an ingredient
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ingredient'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/api/items':
+    get:
+      tags:
+        - Items
+      summary: Get all cached items
+      description: Returns a list of items of all cached items
+      operationId: getItems
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemsResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/api/items/{location}':
+    get:
+      tags:
+        - Items
+      summary: Get items of a supplied canteen
+      description: Returns a list of items of givien canteen
+      operationId: getItemsForLocation
+      parameters:
+        - name: location
+          in: path
+          description: Name of a supported canteen
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemsResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/api/items/{location}/{day}':
+    get:
+      tags:
+        - Items
+      summary: Get items of a supplied canteen on specific weekday
+      description: Returns a list of items of supplied canteen on specific weekday
+      operationId: getItemsForLocationOnDay
+      parameters:
+        - name: location
+          in: path
+          description: Name of a supported canteen
+          required: true
+          schema:
+            type: string
+        - name: day
+          in: path
+          description: Weekday
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemsResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+externalDocs:
+  description: Source code
+  url: 'https://github.com/dotWee/stwno-mensa_api'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        name:
+          type: string
+          example: InvalidLocationParameterError
+        message:
+          type: string
+          example: >-
+            Value for location=uni is invalid. See documentation for possible
+            values.
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/Error'
+    Ingredient:
+      type: object
+      properties:
+        key:
+          type: string
+          example: G
+        value:
+          type: string
+          example: Milch und Milchprodukte
+    IngredientsResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/Ingredient'
+    Item:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Hähnchenbrustfilet mit Pfefferrahm und Minirösti
+        date:
+          type: string
+          example: 10.09.2018
+        day:
+          type: string
+          example: monday
+        category:
+          type: string
+          example: HG1
+        labels:
+          type: array
+          items:
+            type: string
+        ingredients:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ingredient'
+    ItemsResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/Item'
