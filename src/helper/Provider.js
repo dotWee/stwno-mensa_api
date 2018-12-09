@@ -86,7 +86,14 @@ module.exports.getIngredientsForKey = getIngredientsForKey;
  */
 function getItems() {
   const items = [];
-  Object.keys(cache.LOCATIONS).forEach(locationKey => items.push(cache.readMenu(locationKey)));
+  Object.keys(cache.LOCATIONS).forEach((locationKey) => {
+    try {
+      const itemsOnLocation = cache.readMenu(locationKey);
+      items.push(itemsOnLocation);
+    } catch (err) {
+      console.log(`Error on reading items for location=${locationKey} (Items not cached).`);
+    }
+  });
 
   return items;
 }
