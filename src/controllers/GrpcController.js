@@ -1,14 +1,13 @@
 const grpc = require('grpc');
+const path = require('path');
 const protoLoader = require('@grpc/proto-loader');
 
 const Provider = require('../helper/Provider');
-
 const InvalidLocationParameterError = require('../errors/InvalidLocationParameterError');
 const InvalidDayParameterError = require('../errors/InvalidDayParameterError');
 
-const PROTO_PATH = `${__dirname}/../protos/schema.proto`;
 const packageDefinition = protoLoader.loadSync(
-  PROTO_PATH, {
+  path.resolve('./api/grpc/api.proto'), {
     keepCase: true,
     longs: String,
     enums: String,

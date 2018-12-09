@@ -16,14 +16,14 @@ servers:
   - url: http://localhost:3000
     description: Local machine
 tags:
+  - name: Days
+    description: Possible weekday values
+  - name: Locations
+    description: Possible canteen locations
+  - name: Ingredients
+    description: Possible ingredients for items
   - name: Items
     description: Items on the canteen menu plan
-  - name: Days
-    description: Possible weekday values with this API supports
-  - name: Locations
-    description: Possible canteen locations which this API supports
-  - name: Ingredients
-    description: Possible ingredients for menu items
 paths:
   '/api/days':
     get:
@@ -176,6 +176,7 @@ paths:
           required: true
           schema:
             type: string
+          
       responses:
         '200':
           description: Successful operation

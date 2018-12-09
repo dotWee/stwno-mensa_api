@@ -29,7 +29,7 @@ function getLocations(request, response) {
 }
 
 function getIngredients(request, response) {
-  console.log(`getIngredients: request=${request}`);
+  console.log('getIngredients: request-params=', request.params);
 
   try {
     const data = Provider.getIngredients();
@@ -40,7 +40,7 @@ function getIngredients(request, response) {
 }
 
 function getIngredientsForKey(request, response) {
-  console.log(`getIngredientsForKey: request=${request}`);
+  console.log('getIngredientsForKey: request-params=', request.params);
 
   try {
     const data = Provider.getIngredientsForKey(request.params.key);
@@ -62,7 +62,7 @@ function getItems(request, response) {
 }
 
 function getItemsOnLocation(request, response) {
-  console.log(`getItemsOnLocation: request=${request}`);
+  console.log('getItemsOnLocation: request-params=', request.params);
 
   try {
     const [location] = [request.params.location];
@@ -79,7 +79,7 @@ function getItemsOnLocation(request, response) {
 }
 
 function getItemsOnLocationForDay(request, response) {
-  console.log(`getItemsOnLocationForDay: request=${request}`);
+  console.log('getItemsOnLocationForDay: request-params=', request.params);
 
   try {
     const [location, day] = [request.params.location, request.params.day];
@@ -105,11 +105,11 @@ function toDocs(request, response) {
 
 function addRoutes(app) {
   app.use(bodyParser.urlencoded({
-    extended: true
+    extended: true,
   }));
   app.use(bodyParser.json());
 
-  const swaggerDocument = YAML.load(path.resolve('./api/swagger/swagger.yaml'));
+  const swaggerDocument = YAML.load(path.resolve('./api/swagger/api.yaml'));
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, {
     explorer: true,
   }));
