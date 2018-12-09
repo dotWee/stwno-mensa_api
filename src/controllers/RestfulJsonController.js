@@ -8,6 +8,16 @@ const Provider = require('../helper/Provider');
 const InvalidLocationParameterError = require('../errors/InvalidLocationParameterError');
 const InvalidDayParameterError = require('../errors/InvalidDayParameterError');
 
+function getDays(request, response) {
+  console.log('getDays: request-params=', request.params);
+  try {
+    const data = Provider.getDays();
+    response.status(200).json(data);
+  } catch (err) {
+    response.status(500).json({ error: err });
+  }
+}
+
 function getLocations(request, response) {
   console.log('getLocations: request-params=', request.params);
   try {
@@ -106,6 +116,9 @@ function addRoutes(app) {
 
   app.route('/')
     .get(toDocs);
+
+  app.route('/api/days')
+    .get(getDays);
 
   app.route('/api/locations')
     .get(getLocations);

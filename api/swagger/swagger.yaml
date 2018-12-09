@@ -18,11 +18,39 @@ servers:
 tags:
   - name: Items
     description: Items on the canteen menu plan
+  - name: Days
+    description: Possible weekday values with this API supports
   - name: Locations
     description: Possible canteen locations which this API supports
   - name: Ingredients
     description: Possible ingredients for menu items
 paths:
+  '/api/days':
+    get:
+      tags: 
+        - Days
+      summary: Get a list of possible days
+      description: Returns a list of possible days supported by this API
+      operationId: getDays
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DaysResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   '/api/locations':
     get:
       tags: 
@@ -227,6 +255,20 @@ components:
       properties:
         error:
           $ref: '#/components/schemas/Error'
+    Day:
+      type: object
+      properties:
+        key:
+          type: string
+          example: monday
+        aliases:
+          type: array
+          items:
+            type: string
+    DaysResponse:
+      type: object
+      items:
+        $ref: '#/components/schemas/Day'
     Location:
       type: object
       properties:

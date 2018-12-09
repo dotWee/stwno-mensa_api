@@ -23,6 +23,19 @@ module.exports.protoSchema = protoSchema;
 /**
  * Implements the GetLocations RPC method.
  */
+function getDays(call, callback) {
+  try {
+    const data = Provider.getDays();
+    callback(null, { days: data });
+  } catch (err) {
+    callback({ error: err });
+  }
+}
+module.exports.getDays = getDays;
+
+/**
+ * Implements the GetLocations RPC method.
+ */
 function getLocations(call, callback) {
   try {
     const data = Provider.getLocations();
@@ -81,6 +94,10 @@ function getItems(call, callback) {
 module.exports.getItems = getItems;
 
 function addServices(server) {
+  server.addService(protoSchema.Days.service, {
+    getDays,
+  });
+
   server.addService(protoSchema.Locations.service, {
     getLocations,
   });
