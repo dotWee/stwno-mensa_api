@@ -48,6 +48,23 @@ function isValidDay(dayValue) {
 module.exports.isValidDay = isValidDay;
 
 /**
+ * Returns a list of all supported days
+ */
+function getDays() {
+  const days = [];
+
+  Object.keys(cache.DAYS).forEach((dayKey) => {
+    days.push({
+      key: dayKey,
+      aliases: cache.DAYS[dayKey],
+    });
+  });
+
+  return days;
+}
+module.exports.getDays = getDays;
+
+/**
  * Returns a list of all supported locations
  */
 function getLocations() {
