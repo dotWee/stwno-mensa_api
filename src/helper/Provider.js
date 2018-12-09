@@ -48,6 +48,23 @@ function isValidDay(dayValue) {
 module.exports.isValidDay = isValidDay;
 
 /**
+ * Returns a list of all supported locations
+ */
+function getLocations() {
+  const locations = [];
+
+  Object.keys(cache.LOCATIONS).forEach((locationKey) => {
+    locations.push({
+      key: locationKey,
+      aliases: cache.LOCATIONS[locationKey],
+    });
+  });
+
+  return locations;
+}
+module.exports.getLocations = getLocations;
+
+/**
  * Returns all possible ingredients.
  */
 function getIngredients() {
