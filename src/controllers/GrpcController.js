@@ -19,6 +19,20 @@ const packageDefinition = protoLoader.loadSync(
 
 const protoSchema = grpc.loadPackageDefinition(packageDefinition).stwno_mensa_api;
 module.exports.protoSchema = protoSchema;
+
+/**
+ * Implements the GetLocations RPC method.
+ */
+function getLocations(call, callback) {
+  try {
+    const data = Provider.getLocations();
+    callback(null, { locations: data });
+  } catch (err) {
+    callback({ error: err });
+  }
+}
+module.exports.getLocations = getLocations;
+
 /**
  * Implements the GetIngredients RPC method.
  */
@@ -67,6 +81,10 @@ function getItems(call, callback) {
 module.exports.getItems = getItems;
 
 function addServices(server) {
+  server.addService(protoSchema.Locations.service, {
+    getLocations,
+  });
+
   server.addService(protoSchema.Ingredients.service, {
     getIngredients,
   });
