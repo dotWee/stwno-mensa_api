@@ -1,7 +1,8 @@
 const swaggerUi = require('swagger-ui-express');
 const bodyParser = require('body-parser');
+const YAML = require('yamljs');
+const path = require('path');
 
-const swaggerDocument = require('../swagger.json');
 const Provider = require('../helper/Provider');
 
 const InvalidLocationParameterError = require('../errors/InvalidLocationParameterError');
@@ -30,13 +31,13 @@ function getIngredientsForKey(request, response) {
 }
 
 function getItems(request, response) {
-  console.log(`getItems: request=${request}`);
+  console.log('getItems: request-params=', request.params);
 
   try {
     const data = Provider.getItems();
     response.status(200).json(data);
-  } catch (err) {
-    response.status(400).json({ error: err });
+  } catch (error) {
+    response.status(400).json({ error });
   }
 }
 
@@ -88,6 +89,7 @@ function addRoutes(app) {
   }));
   app.use(bodyParser.json());
 
+  const swaggerDocument = YAML.load(path.resolve('./api/swagger/swagger.yaml'));
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, {
     explorer: true,
   }));
