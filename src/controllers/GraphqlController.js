@@ -54,7 +54,7 @@ const queries = {
   days: () => {
     return Provider.getDays();
   },
-  
+
   locations: () => {
     return Provider.getLocations();
   },
@@ -68,7 +68,7 @@ const queries = {
 
     return Provider.getIngredients();
   },
-  mensa: ({
+  items: ({
     location,
     day,
   }) => {
