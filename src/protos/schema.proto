@@ -3,6 +3,29 @@ syntax = "proto3";
 package stwno_mensa_api;
 
 // The ingredients service definition.
+service Locations {
+  // Returns ingredients
+  rpc GetLocations (LocationsRequest) returns (LocationsResponse) {}
+}
+
+// The locations request
+message LocationsRequest {
+
+}
+
+// The locations response
+message LocationsResponse {
+  Error error = 1;
+  repeated Location locations = 2;
+}
+
+// The location object
+message Location {
+  string key = 1;
+  repeated string aliases = 2;
+}
+
+// The ingredients service definition.
 service Ingredients {
   // Returns ingredients
   rpc GetIngredients (IngredientsRequest) returns (IngredientsResponse) {}

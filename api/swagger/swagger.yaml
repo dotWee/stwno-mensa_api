@@ -18,9 +18,37 @@ servers:
 tags:
   - name: Items
     description: Items on the canteen menu plan
+  - name: Locations
+    description: Possible canteen locations which this API supports
   - name: Ingredients
     description: Possible ingredients for menu items
 paths:
+  '/api/locations':
+    get:
+      tags: 
+        - Locations
+      summary: Get a list of possible locations
+      description: Returns a list of possible locations supported by this API
+      operationId: getLocations
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationsResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   '/api/ingredients':
     get:
       tags:
@@ -199,6 +227,20 @@ components:
       properties:
         error:
           $ref: '#/components/schemas/Error'
+    Location:
+      type: object
+      properties:
+        key:
+          type: string
+          example: UNI-R
+        aliases:
+          type: array
+          items:
+            type: string
+    LocationsResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/Location'
     Ingredient:
       type: object
       properties:
