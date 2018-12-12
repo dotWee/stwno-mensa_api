@@ -1,19 +1,106 @@
 {
-    "UNI-R": ["regensburg-university", "regensburg-universität"],
-    "UNI-R-Gs": ["regensburg-university-gaestesaal", "regensburg-universität-gästesaal"],
-    "Cafeteria-PT": ["regensburg-university-cafeteria-pt", "regensburg-universität-cafeteria-pt"],
-    "Cafeteria-Chemie": ["regensburg-university-cafeteria-chemestry", "regensburg-universität-cafeteria-chemie"],
-    "Cafeteria-Sport": ["regensburg-university-cafeteria-sports", "regensburg-universität-cafeteria-sport"],
+    "University of Regensburg": {
+        "url": "https://www.uni-regensburg.de",
+        "source": "https://www.stwno.de/de/gastronomie/speiseplan/uni-regensburg/mensa-ur",
 
-    "HS-R-tag": ["regensburg-oth", "regensburg-seybothstrasse"],
-    "HS-R-abend": ["regensburg-oth-abend", "regensburg-oth-evening", "regensburg-seybothstrasse-abends"],
-    "Cafeteria-Pruefening": ["regensburg-oth-pruefening", "regensburg-pruefening", "oth-prüfening"],
+        "keys": [{
+                "key": "UNI-R",
+                "source": "https://www.stwno.de/de/gastronomie/speiseplan/uni-regensburg/mensa-ur",
+                "aliases": ["regensburg-university", "regensburg-universität"]
+            },
+            {
+                "key": "UNI-R-Gs",
+                "source": "https://www.stwno.de/de/gastronomie/speiseplan/uni-regensburg/mensa-gaestesaal",
+                "aliases": ["regensburg-university-gaestesaal", "regensburg-universität-gästesaal"]
+            },
+            {
+                "key": "Cafeteria-PT",
+                "source": "https://www.stwno.de/de/gastronomie/speiseplan/uni-regensburg/cafeteria-pt",
+                "aliases": ["regensburg-university-cafeteria-pt", "regensburg-universität-cafeteria-pt"]
+            },
+            {
+                "key": "Cafeteria-Chemie",
+                "source": "https://www.stwno.de/de/gastronomie/speiseplan/uni-regensburg/cafeteria-chemie",
+                "aliases": ["regensburg-university-cafeteria-chemestry", "regensburg-universität-cafeteria-chemie"]
+            },
+            {
+                "key": "Cafeteria-Sport",
+                "source": "https://www.stwno.de/de/gastronomie/speiseplan/uni-regensburg/cafeteria-sport",
+                "aliases": ["regensburg-university-cafeteria-sports", "regensburg-universität-cafeteria-sport"]
+            }
+        ]
+    },
+    "Regensburg University of Applied Sciences": {
+        "url": "",
+        "source": "",
 
-    "UNI-P": ["parsberg-university", "parsberg-universität"],
-    "Cafeteria-Nikolakloster": ["parsberg-nikolakloster", "parsberg-university-nikolakloster", "parsberg-universität-nikolakloster"],
+        "keys": [{
+                "key": "HS-R-tag",
+                "source": "https://www.stwno.de/de/gastronomie/speiseplan/oth-regensburg/seybothstrasse-mittags",
+                "aliases": ["regensburg-oth", "regensburg-seybothstrasse"]
+            },
+            {
+                "key": "HS-R-abend",
+                "source": "https://www.stwno.de/de/gastronomie/speiseplan/oth-regensburg/seybothstrasse-abends",
+                "aliases": ["regensburg-oth-abend", "regensburg-oth-evening", "regensburg-seybothstrasse-abends"]
+            },
+            {
+                "key": "Cafeteria-Pruefening",
+                "source": "https://www.stwno.de/de/gastronomie/speiseplan/oth-regensburg/pruefeningerstrasse-mittags",
+                "aliases": ["regensburg-oth-pruefening", "regensburg-pruefening", "oth-prüfening"]
+            }
+        ]
+    },
+    "University of Passau": {
+        "url": "http://www.uni-passau.de/en/",
 
-    "HS-DEG": ["deggendorf-hs"],
-    "HS-LA": ["landshut-haw"],
-    "HS-RA": ["straubing-tum"],
-    "HS-PAN": ["pfarrkirchen"]
+        "keys": [{
+                "key": "UNI-P",
+                "source": "https://www.stwno.de/de/gastronomie/speiseplan/uni-passau/uni-passau-mensa",
+                "aliases": ["passau-university", "passau-universität"]
+            },
+            {
+                "key": "Cafeteria-Nikolakloster",
+                "source": "https://www.stwno.de/de/gastronomie/speiseplan/uni-passau/cafeteria-nikolakloster",
+                "aliases": ["parsberg-nikolakloster", "parsberg-university-nikolakloster", "parsberg-universität-nikolakloster"]
+            }
+        ]
+    },
+
+    "Institute of Technology Deggendorf": {
+        "url": "https://www.th-deg.de/en/",
+
+        "keys": [{
+            "key": "HS-DEG",
+            "source": "https://www.stwno.de/de/gastronomie/speiseplan/th-deggendorf",
+            "aliases": ["deggendorf-hs"]
+        }]
+    },
+    "University of Applied Sciences Landshut": {
+        "url": "https://www.haw-landshut.de/en.html",
+
+        "keys": [{
+            "key": "HS-LA",
+            "source": "https://www.stwno.de/de/gastronomie/speiseplan/hs-landshut",
+            "aliases": ["landshut-haw"]
+        }]
+    },
+    "Technical University of Munich - Campus Straubing": {
+        "url": "https://www.tum.de/nc/en/about-tum/our-university/locations/campus-straubing/",
+
+        "keys": [{
+            "key": "HS-RA",
+            "source": "https://www.stwno.de/de/gastronomie/speiseplan/tum-straubing",
+            "aliases": ["straubing-tum"]
+        }]
+    },
+    "European Campus Rottal-Inn - Pfarrkirchen": {
+        "url": "https://www.th-deg.de/en/university/e-c",
+
+        "keys": [{
+            "key": "HS-PAN",
+            "source": "https://www.stwno.de/de/gastronomie/speiseplan/mensateria-pfarrkirchen",
+            "aliases": ["pfarrkirchen", "pfarrkirchen-mensateria"]
+        }]
+    }
 }
