@@ -1,19 +1,17 @@
 openapi: 3.0.0
 info:
-  description: >-
-    A json- / grpc- / graphql-wrapper around the inofficial API for different
-    canteens managed by the Studentenwerk Niederbayern/Oberpfalz.
-  version: "3.0.0-oas3"
+  description: A json- / grpc- / graphql-wrapper around the inofficial API for different canteens managed by the Studentenwerk Niederbayern/Oberpfalz.
+  version: 3.0.0
   title: Studentenwerk Niederbayern/Oberpfalz Mensa API
   contact:
     email: lukas@wolfsteiner.media
   license:
     name: GPLv3
-    url: 'https://github.com/dotWee/stwno-mensa_api/blob/master/LICENSE'
+    url: https://github.com/dotWee/stwno-mensa_api/blob/master/LICENSE
 servers:
-  - url: 'https://stwno-mensa-api.herokuapp.com'
+  - url: https://stwno-mensa-api.herokuapp.com
     description: Deployment on herokuapp
-  - url: 'http://localhost:3000'
+  - url: http://localhost:3000
     description: Local machine
 tags:
   - name: Days
@@ -33,19 +31,19 @@ paths:
       description: Returns a list of possible days supported by this API
       operationId: getDays
       responses:
-        '200':
+        200:
           description: Successful operation
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/DaysResponse'
-        '400':
+        400:
           description: Bad request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-        '500':
+        500:
           description: Internal server error
           content:
             application/json:
@@ -59,19 +57,19 @@ paths:
       description: Returns a list of possible locations supported by this API
       operationId: getLocations
       responses:
-        '200':
+        200:
           description: Successful operation
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Locations'
-        '400':
+        400:
           description: Bad request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-        '500':
+        500:
           description: Internal server error
           content:
             application/json:
@@ -85,19 +83,19 @@ paths:
       description: Returns a list of possible ingredients
       operationId: getIngredients
       responses:
-        '200':
+        200:
           description: Successful operation
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Ingredients'
-        '400':
+        400:
           description: Bad request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-        '500':
+        500:
           description: Internal server error
           content:
             application/json:
@@ -119,19 +117,19 @@ paths:
             type: string
           example: regensburg-university
       responses:
-        '200':
+        200:
           description: Successful operation
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Location'
-        '400':
+        400:
           description: Bad request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-        '500':
+        500:
           description: Internal server error
           content:
             application/json:
@@ -152,19 +150,19 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        200:
           description: Successful operation
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Ingredient'
-        '400':
+        400:
           description: Bad request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-        '500':
+        500:
           description: Internal server error
           content:
             application/json:
@@ -178,19 +176,19 @@ paths:
       description: Returns a list of items of all cached items
       operationId: getItems
       responses:
-        '200':
+        200:
           description: Successful operation
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Items'
-        '400':
+        400:
           description: Bad request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-        '500':
+        500:
           description: Internal server error
           content:
             application/json:
@@ -211,19 +209,19 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        200:
           description: Successful operation
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Items'
-        '400':
+        400:
           description: Bad request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-        '500':
+        500:
           description: Internal server error
           content:
             application/json:
@@ -250,19 +248,19 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        200:
           description: Successful operation
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Items'
-        '400':
+        400:
           description: Bad request
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-        '500':
+        500:
           description: Internal server error
           content:
             application/json:
@@ -281,9 +279,7 @@ components:
           example: InvalidLocationParameterError
         message:
           type: string
-          example: >-
-            Value for location=uni is invalid. See documentation for possible
-            values.
+          example: Value for location=uni is invalid. See documentation for possible values.
     ErrorResponse:
       type: object
       properties:
@@ -311,8 +307,7 @@ components:
           example: UNI-R
         source:
           type: string
-          example: >-
-            https://www.stwno.de/de/gastronomie/speiseplan/uni-regensburg/mensa-ur
+          example: https://www.stwno.de/de/gastronomie/speiseplan/uni-regensburg/mensa-ur
         aliases:
           type: array
           items:
@@ -326,7 +321,7 @@ components:
           example: University of Regensburg
         url:
           type: string
-          example: 'https://www.uni-regensburg.de'
+          example: https://www.uni-regensburg.de
         keys:
           type: array
           items:

@@ -37,7 +37,19 @@ module.exports.getDays = getDays;
  */
 function getLocations(call, callback) {
   try {
-    const data = Provider.getLocations();
+    let data;
+    const [alias] = [call.request.alias];
+
+    if (alias) {
+      if (!Provider.isValidLocation(alias)) {
+        throw new InvalidLocationParameterError(alias);
+      }
+
+      data = Provider.getLocationForAlias(alias);
+    } else {
+      data = Provider.getLocations();
+    }
+
     callback(null, { locations: data });
   } catch (err) {
     callback({ error: err });

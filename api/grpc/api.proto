@@ -33,7 +33,7 @@ service Locations {
 
 // The locations request
 message LocationsRequest {
-
+  string alias = 1;
 }
 
 // The locations response
@@ -44,8 +44,16 @@ message LocationsResponse {
 
 // The location object
 message Location {
+  string name = 1;
+  string url = 2;
+  repeated LocationKey keys = 3;
+}
+
+// The location key object
+message LocationKey {
   string key = 1;
-  repeated string aliases = 2;
+  string source = 2;
+  repeated string aliases = 3;
 }
 
 // The ingredients service definition.

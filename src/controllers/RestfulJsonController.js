@@ -28,6 +28,17 @@ function getLocations(request, response) {
   }
 }
 
+function getLocationForAlias(request, response) {
+  console.log('getLocationForAlias: request-params=', request.params);
+
+  try {
+    const data = Provider.getLocationForAlias(request.params.alias);
+    response.status(200).json(data);
+  } catch (err) {
+    response.status(500).json({ error: err });
+  }
+}
+
 function getIngredients(request, response) {
   console.log('getIngredients: request-params=', request.params);
 
@@ -109,7 +120,7 @@ function addRoutes(app) {
   }));
   app.use(bodyParser.json());
 
-  const swaggerDocument = YAML.load(path.resolve('./api/swagger/api.yaml'));
+  const swaggerDocument = YAML.load(path.resolve('./api/swagger/swagger.yaml'));
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, {
     explorer: true,
   }));
@@ -122,6 +133,9 @@ function addRoutes(app) {
 
   app.route('/api/locations')
     .get(getLocations);
+
+  app.route('/api/locations/:alias')
+    .get(getLocationForAlias);
 
   app.route('/api/ingredients')
     .get(getIngredients);

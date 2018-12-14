@@ -18,9 +18,16 @@ type Day {
   aliases: [String]!
 }
 
-type Location {
+type LocationKey {
   key: String!
+  source: String!
   aliases: [String]!
+}
+
+type Location {
+  name: String!
+  url: [String]!
+  keys: [LocationKey]!
 }
 
 type Ingredient {
@@ -51,11 +58,19 @@ type Error {
 `);
 
 const queries = {
-  days: () => {
-    return Provider.getDays();
-  },
+  days: () => Provider.getDays(),
 
-  locations: () => {
+  locations: ({
+    alias,
+  }) => {
+    if (alias) {
+      if (!Provider.isValidLocation(alias)) {
+        return new InvalidLocationParameterError(alias);
+      }
+
+      return Provider.getLocationForAlias(alias);
+    }
+
     return Provider.getLocations();
   },
 
