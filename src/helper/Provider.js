@@ -1,13 +1,14 @@
-const cache = require('./Cache');
+const Cache = require('./Cache');
 
 function resolveLocation(locationValue) {
   let resolvedLocation;
 
-  Object.keys(cache.LOCATIONS).forEach((locationKey) => {
-    if (locationKey === locationValue ||
-      cache.LOCATIONS[locationKey].indexOf(locationValue) > -1) {
-      resolvedLocation = locationKey;
-    }
+  Object.keys(Cache.LOCATIONS).forEach((name) => {
+    Cache.LOCATIONS[name].keys.forEach((location) => {
+      if (location.key === locationValue || location.aliases.indexOf(locationValue) > -1) {
+        resolvedLocation = location.key;
+      }
+    });
   });
 
   return resolvedLocation;
@@ -22,9 +23,9 @@ module.exports.isValidLocation = isValidLocation;
 function resolveDay(dayValue) {
   let resolvedDay;
 
-  Object.keys(cache.DAYS).forEach((dayKey) => {
+  Object.keys(Cache.DAYS).forEach((dayKey) => {
     if (dayKey === dayValue
-      || cache.DAYS[dayKey].indexOf(dayValue) > -1) {
+      || Cache.DAYS[dayKey].indexOf(dayValue) > -1) {
       resolvedDay = dayKey;
     }
   });
@@ -53,10 +54,10 @@ module.exports.isValidDay = isValidDay;
 function getDays() {
   const days = [];
 
-  Object.keys(cache.DAYS).forEach((dayKey) => {
+  Object.keys(Cache.DAYS).forEach((dayKey) => {
     days.push({
       key: dayKey,
-      aliases: cache.DAYS[dayKey],
+      aliases: Cache.DAYS[dayKey],
     });
   });
 
@@ -70,10 +71,11 @@ module.exports.getDays = getDays;
 function getLocations() {
   const locations = [];
 
-  Object.keys(cache.LOCATIONS).forEach((locationKey) => {
+  Object.keys(Cache.LOCATIONS).forEach((locationKey) => {
     locations.push({
-      key: locationKey,
-      aliases: cache.LOCATIONS[locationKey],
+      name: locationKey,
+      url: Cache.LOCATIONS[locationKey].url,
+      keys: Cache.LOCATIONS[locationKey].keys,
     });
   });
 
@@ -85,7 +87,7 @@ module.exports.getLocations = getLocations;
  * Returns all possible ingredients.
  */
 function getIngredients() {
-  return cache.getIngredients();
+  return Cache.getIngredients();
 }
 module.exports.getIngredients = getIngredients;
 
@@ -120,9 +122,9 @@ module.exports.getIngredientsForKey = getIngredientsForKey;
  */
 function getItems() {
   const items = [];
-  Object.keys(cache.LOCATIONS).forEach((locationKey) => {
+  Object.keys(Cache.LOCATIONS).forEach((locationKey) => {
     try {
-      const itemsOnLocation = cache.readMenu(locationKey);
+      const itemsOnLocation = Cache.readMenu(locationKey);
       items.push(itemsOnLocation);
     } catch (err) {
       console.log(`Error on reading items for location=${locationKey} (Items not cached).`);
@@ -147,7 +149,7 @@ function getItemsOnLocation(location) {
     throw new Error(`Location ${location} is invalid.`);
   }
 
-  return cache.readMenu(resolvedLocation);
+  return Cache.readMenu(resolvedLocation);
 }
 module.exports.getItemsOnLocation = getItemsOnLocation;
 
