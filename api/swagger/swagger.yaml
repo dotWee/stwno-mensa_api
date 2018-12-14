@@ -3,7 +3,7 @@ info:
   description: >-
     A json- / grpc- / graphql-wrapper around the inofficial API for different
     canteens managed by the Studentenwerk Niederbayern/Oberpfalz.
-  version: "3.0.0"
+  version: "3.0.0-oas3"
   title: Studentenwerk Niederbayern/Oberpfalz Mensa API
   contact:
     email: lukas@wolfsteiner.media
@@ -11,9 +11,9 @@ info:
     name: GPLv3
     url: 'https://github.com/dotWee/stwno-mensa_api/blob/master/LICENSE'
 servers:
-  - url: https://stwno-mensa-api.herokuapp.com
+  - url: 'https://stwno-mensa-api.herokuapp.com'
     description: Deployment on herokuapp
-  - url: http://localhost:3000
+  - url: 'http://localhost:3000'
     description: Local machine
 tags:
   - name: Days
@@ -25,9 +25,9 @@ tags:
   - name: Items
     description: Items on the canteen menu plan
 paths:
-  '/api/days':
+  /api/days:
     get:
-      tags: 
+      tags:
         - Days
       summary: Get a list of possible days
       description: Returns a list of possible days supported by this API
@@ -51,9 +51,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  '/api/locations':
+  /api/locations:
     get:
-      tags: 
+      tags:
         - Locations
       summary: Get a list of possible locations
       description: Returns a list of possible locations supported by this API
@@ -77,7 +77,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  '/api/ingredients':
+  /api/ingredients:
     get:
       tags:
         - Ingredients
@@ -91,6 +91,40 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/IngredientsResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  '/api/locations/{alias}':
+    get:
+      tags:
+        - Locations
+      summary: Get location details matching the supplied alias
+      description: Returns location details matching the supplied alias
+      operationId: getLocationForAlias
+      parameters:
+        - name: alias
+          in: path
+          description: Alias of a location
+          required: true
+          schema:
+            type: string
+          example: regensburg-university
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
         '400':
           description: Bad request
           content:
@@ -136,7 +170,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  '/api/items':
+  /api/items:
     get:
       tags:
         - Items
@@ -176,7 +210,6 @@ paths:
           required: true
           schema:
             type: string
-          
       responses:
         '200':
           description: Successful operation
@@ -270,16 +303,34 @@ components:
       type: object
       items:
         $ref: '#/components/schemas/Day'
-    Location:
+    LocationKey:
       type: object
       properties:
         key:
           type: string
           example: UNI-R
+        source:
+          type: string
+          example: >-
+            https://www.stwno.de/de/gastronomie/speiseplan/uni-regensburg/mensa-ur
         aliases:
           type: array
           items:
             type: string
+            example: regensburg-university
+    Location:
+      type: object
+      properties:
+        name:
+          type: string
+          example: University of Regensburg
+        url:
+          type: string
+          example: 'https://www.uni-regensburg.de'
+        keys:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocationKey'
     LocationsResponse:
       type: array
       items:

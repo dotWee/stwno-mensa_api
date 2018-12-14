@@ -1,7 +1,6 @@
-{
-    "University of Regensburg": {
+[{
+        "name": "University of Regensburg",
         "url": "https://www.uni-regensburg.de",
-        "source": "https://www.stwno.de/de/gastronomie/speiseplan/uni-regensburg/mensa-ur",
 
         "keys": [{
                 "key": "UNI-R",
@@ -30,9 +29,9 @@
             }
         ]
     },
-    "Regensburg University of Applied Sciences": {
-        "url": "",
-        "source": "",
+    {
+        "name": "Regensburg University of Applied Sciences",
+        "url": "https://www.oth-regensburg.de/en.html",
 
         "keys": [{
                 "key": "HS-R-tag",
@@ -51,7 +50,8 @@
             }
         ]
     },
-    "University of Passau": {
+    {
+        "name": "University of Passau",
         "url": "http://www.uni-passau.de/en/",
 
         "keys": [{
@@ -67,7 +67,8 @@
         ]
     },
 
-    "Institute of Technology Deggendorf": {
+    {
+        "name": "Institute of Technology Deggendorf",
         "url": "https://www.th-deg.de/en/",
 
         "keys": [{
@@ -76,7 +77,8 @@
             "aliases": ["deggendorf-hs"]
         }]
     },
-    "University of Applied Sciences Landshut": {
+    {
+        "name": "University of Applied Sciences Landshut",
         "url": "https://www.haw-landshut.de/en.html",
 
         "keys": [{
@@ -85,7 +87,8 @@
             "aliases": ["landshut-haw"]
         }]
     },
-    "Technical University of Munich - Campus Straubing": {
+    {
+        "name": "Technical University of Munich - Campus Straubing",
         "url": "https://www.tum.de/nc/en/about-tum/our-university/locations/campus-straubing/",
 
         "keys": [{
@@ -94,7 +97,8 @@
             "aliases": ["straubing-tum"]
         }]
     },
-    "European Campus Rottal-Inn - Pfarrkirchen": {
+    {
+        "name": "European Campus Rottal-Inn - Pfarrkirchen",
         "url": "https://www.th-deg.de/en/university/e-c",
 
         "keys": [{
@@ -103,4 +107,4 @@
             "aliases": ["pfarrkirchen", "pfarrkirchen-mensateria"]
         }]
     }
-}
+]
