@@ -19,11 +19,11 @@ tags:
   - name: Days
     description: Possible weekday values
   - name: Locations
-    description: Possible canteen locations
+    description: Supported locations
   - name: Ingredients
-    description: Possible ingredients for items
+    description: Possible ingredients items can contain
   - name: Items
-    description: Items on the canteen menu plan
+    description: List of items on a menu 
 paths:
   /api/days:
     get:
@@ -64,7 +64,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LocationsResponse'
+                $ref: '#/components/schemas/Locations'
         '400':
           description: Bad request
           content:
@@ -90,7 +90,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/IngredientsResponse'
+                $ref: '#/components/schemas/Ingredients'
         '400':
           description: Bad request
           content:
@@ -183,7 +183,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ItemsResponse'
+                $ref: '#/components/schemas/Items'
         '400':
           description: Bad request
           content:
@@ -216,7 +216,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ItemsResponse'
+                $ref: '#/components/schemas/Items'
         '400':
           description: Bad request
           content:
@@ -255,7 +255,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ItemsResponse'
+                $ref: '#/components/schemas/Items'
         '400':
           description: Bad request
           content:
@@ -331,7 +331,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LocationKey'
-    LocationsResponse:
+    Locations:
       type: array
       items:
         $ref: '#/components/schemas/Location'
@@ -344,7 +344,7 @@ components:
         value:
           type: string
           example: Milch und Milchprodukte
-    IngredientsResponse:
+    Ingredients:
       type: array
       items:
         $ref: '#/components/schemas/Ingredient'
@@ -371,7 +371,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Ingredient'
-    ItemsResponse:
+    Items:
       type: array
       items:
         $ref: '#/components/schemas/Item'

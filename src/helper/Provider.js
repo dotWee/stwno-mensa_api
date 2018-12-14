@@ -1,22 +1,22 @@
 const Cache = require('./Cache');
 
-function resolveLocation(locationValue) {
+function resolveLocationKey(locationKeyOrAlias) {
   let resolvedLocation;
 
-  Object.keys(Cache.LOCATIONS).forEach((name) => {
-    Cache.LOCATIONS[name].keys.forEach((location) => {
-      if (location.key === locationValue || location.aliases.indexOf(locationValue) > -1) {
-        resolvedLocation = location.key;
+  Cache.LOCATIONS.forEach((locationObj) => {
+    locationObj.keys.forEach((locationKeyObj) => {
+      if (locationKeyObj.key === locationKeyOrAlias || locationKeyObj.aliases.indexOf(locationKeyOrAlias) > -1) {
+        resolvedLocation = locationKeyObj.key;
       }
     });
   });
 
   return resolvedLocation;
 }
-module.exports.resolveLocation = resolveLocation;
+module.exports.resolveLocation = resolveLocationKey;
 
 function isValidLocation(locationValue) {
-  return resolveLocation(locationValue) !== undefined;
+  return resolveLocationKey(locationValue) !== undefined;
 }
 module.exports.isValidLocation = isValidLocation;
 
@@ -69,19 +69,31 @@ module.exports.getDays = getDays;
  * Returns a list of all supported locations
  */
 function getLocations() {
-  const locations = [];
-
-  Object.keys(Cache.LOCATIONS).forEach((locationKey) => {
-    locations.push({
-      name: locationKey,
-      url: Cache.LOCATIONS[locationKey].url,
-      keys: Cache.LOCATIONS[locationKey].keys,
-    });
-  });
-
-  return locations;
+  return Cache.LOCATIONS;
 }
 module.exports.getLocations = getLocations;
+
+/**
+ * Returns location details matching the supplied alias
+ */
+function getLocationForAlias(alias) {
+  const resolvedLocationKey = resolveLocationKey(alias);
+  let resolvedLocationObj;
+
+  Cache.LOCATIONS.forEach((locationObj) => {
+    locationObj.keys.forEach(((locationKeyObj) => {
+      if (locationKeyObj.key === resolvedLocationKey) {
+        resolvedLocationObj = locationObj;
+
+        // Optional: Filter keys for supplied key alias
+        // resolvedLocationObj.keys = locationObj.keys.filter(resolvedLocationKeyObj => resolvedLocationKeyObj.key === resolvedLocationKey);
+      }
+    }));
+  });
+
+  return resolvedLocationObj;
+}
+module.exports.getLocationForAlias = getLocationForAlias;
 
 /**
  * Returns all possible ingredients.
@@ -144,7 +156,7 @@ function getItemsOnLocation(location) {
     throw new Error('Location is undefined');
   }
 
-  const resolvedLocation = resolveLocation(location);
+  const resolvedLocation = resolveLocationKey(location);
   if (!resolvedLocation) {
     throw new Error(`Location ${location} is invalid.`);
   }
