@@ -24,7 +24,7 @@
   "dependencies": {
     "@grpc/proto-loader": "^0.3.0",
     "apollo-server-express": "^2.15.1",
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.19.0",
     "csv-parse": "^4.10.1",
     "express": "^4.16.4",
     "express-graphql": "^0.7.1",
