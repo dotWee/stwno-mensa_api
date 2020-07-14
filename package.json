@@ -15,7 +15,7 @@
   "author": "Lukas Wolfsteiner <lukas@wolfsteiner.media>",
   "license": "WTFPL",
   "devDependencies": {
-    "eslint": "^5.9.0",
+    "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "mocha": "^5.2.0",
