@@ -29,7 +29,7 @@
     "express": "^4.17.1",
     "express-graphql": "^0.7.1",
     "fs": "0.0.1-security",
-    "google-protobuf": "^3.6.1",
+    "google-protobuf": "^3.12.2",
     "graphql": "^14.0.2",
     "graphql-tools": "^4.0.3",
     "grpc": "^1.17.0-pre1",
