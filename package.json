@@ -34,7 +34,7 @@
     "graphql-tools": "^4.0.8",
     "grpc": "^1.24.5",
     "iconv-lite": "^0.4.24",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "minimist": "^1.2.5",
     "path": "^0.12.7",
     "swagger-ui-express": "^4.1.6"
