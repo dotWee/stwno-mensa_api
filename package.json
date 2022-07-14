@@ -37,7 +37,7 @@
     "lodash": "^4.17.21",
     "minimist": "^1.2.5",
     "path": "^0.12.7",
-    "swagger-ui-express": "^4.4.0"
+    "swagger-ui-express": "^4.5.0"
   },
   "nodemonConfig": {
     "ignore": [
