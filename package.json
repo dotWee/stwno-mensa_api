@@ -26,7 +26,7 @@
     "apollo-server-express": "^2.25.2",
     "body-parser": "^1.20.2",
     "csv-parse": "^4.16.3",
-    "express": "^4.19.2",
+    "express": "^4.20.0",
     "express-graphql": "^0.7.1",
     "fs": "0.0.1-security",
     "google-protobuf": "^3.21.4",
